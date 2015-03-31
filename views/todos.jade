@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 TODO
+  
+  #createTodo
+    form(action='/todos', method='POST')
+      input(type='input', name='content')
+      input(type='submit', value='新增')
+
+  h2 TODO 列表
+  div
+    a(href='/todos') 未完成
+    a(href='/todos?status=1') 已完成
+  table
+    each todo in todos
+      tr
+        td 
+          form(action='/todos/done', method='POST')
+            input(type='checkbox', name='id', value='#{todo.id}', checked=(todo.get('status') == 1), onClick='submit()')
+        td #{todo.get('content')}

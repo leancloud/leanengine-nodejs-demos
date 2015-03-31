@@ -1,0 +1,7 @@
+{
+  "runtime_language": "nodejs",
+  "runtime_version": "1.0",
+  "config": {
+    "main_script": "app.js"
+  },
+}
