@@ -2,6 +2,25 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src='/static/javascripts/jquery-2.1.1.min.js')
+    script(src='/static/javascripts/bootstrap.min.js')
+    link(rel='stylesheet', href='/static/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/static/stylesheets/style.css')
   body
-    block content
+    nav.navbar.navbar-default.navbar-static-top(role='navigation')
+      .container
+        .navbar-header
+          a.navbar-brand(href='/todos') 云代码 Demo
+        #bs-example-navbar-collapse-1(class='collapse navbar-collapse')
+          ul(class='nav navbar-nav')
+            li: a(href="/todos") TODO 列表
+          ul.nav.navbar-nav.navbar-right
+            if user
+              li: a(href="#") #{user.get('username')}
+              li: a(href="/users/logout") 登出
+            else
+              li: a(href="/users/login") 登录
+              li: a(href="/users/register") 注册
+    .container
+      block content

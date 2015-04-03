@@ -1,7 +1,20 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override')
 
+// 需要引入 `cloudcode-nodejs-sdk` 模块，该模块扩展了 JS-SDK 中的 AV 对象，
+// 增加了云代码的一些支持。
+// 该 AV 对象不需要初始化，因为 `cloudcode-nodejs-sdk` 已经初始化完成。
+var AV = require('cloudcode-nodejs-sdk');
+
+// 云代码默认使用 masterKey 初始化，这样不受 ACL 的限制，非常适合做管理员控制台。
+// 但有些时候需要做普通的 web 应用，需要 ACL 的限制时，可以使用 appId 和 appKey
+// 重新初始化 AV 对象。
+// 可以从环境变量 `LC_APP_ID` 和 `LC_APP_KEY` 中分别获取 appId 和 appKey。
+AV.initialize(process.env.LC_APP_ID, process.env.LC_APP_KEY);
+
+var users = require('./routes/users');
 var todos = require('./routes/todos');
 var functions = require('./functions');
 
@@ -11,12 +24,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use('/static', express.static('public'));
+
+// 加载云代码方法
 app.use(functions);
+
+// 加载 cookieSession 以支持 AV.User 的会话状态
+app.use(AV.Cloud.CookieSession({ secret: 'my secret', maxAge: 3600000, fetchUser: true }));
+
+app.use(methodOverride('_method'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
 app.use('/todos', todos);
+app.use('/users', users);
 
 // 一个简单的路由，测试应用的最基本功能
 app.get('/hello', function (req, res) {
