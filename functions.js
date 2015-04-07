@@ -21,7 +21,7 @@ var tagRe = /#(\w+)/g
  */
 AV.Cloud.beforeSave('Todo', function(req, res) {
   var todo = req.body;
-  var content = .get('content');
+  var content = todo.get('content');
   var tags = todo.get('content').match(tagRe);
   tags = _.uniq(tags);
   todo.set('tags', tags);
