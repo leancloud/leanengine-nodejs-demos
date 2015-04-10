@@ -1,6 +1,6 @@
-export LC_APP_ID=vlluf1vrnjox43x3v7lf3qpfxcwoscudjjgs6she9xwo9d0s
-export LC_APP_KEY=pvazn2ba4myp9d2xz93n5caaaq1ci6la4dmuahhs0is8263v
-export LC_APP_MASTER_KEY=1417oa0rzpo81ga2dauz0med3m6n8sxyou1fjq5zi115vlox
+export LC_APP_ID=<your app id>
+export LC_APP_KEY=<your app key>
+export LC_APP_MASTER_KEY=<your master key>
 export LC_APP_PORT=3000
 
-supervisor --no-restart-on exit app.js
+supervisor --no-restart-on exit server.js
