@@ -1,4 +1,4 @@
-var AV = require('cloudcode-nodejs-sdk');
+var AV = require('leanengine-sdk');
 var _ = require('underscore');
 
 /**

@@ -18,28 +18,28 @@
 执行下列代码来迁出项目：
   
 ```
-git clone git@code.csdn.net:sdjcw/cloudcode-todo-demo.git
-cd cloudcode-todo-demo
+$ git clone git@github.com:sdjcw/leanengine-todo-demo.git
+$ cd leanengine-todo-demo
 
 ```
 
 下载依赖包：
 
 ```
-npm install
+$ npm install
 ```
 
 准备启动文件：
 
 ```
-cp start.sh.example start.sh
-chmod +x start.sh
+$ cp start.sh.example start.sh
+$ chmod +x start.sh
 ```
 
 因为开发调试使用了 `supervisor` 来做自动重启，所以你可能需要执行下列命令安装：
 
 ```
-sudo npm install supervisor -g
+$ sudo npm install supervisor -g
 ```
 
 在 LeanCloud 控制台新建项目，并将 `appId`，`appKey`，`masterKey` 填写到 `start.sh` 中。
@@ -67,6 +67,19 @@ TODO demo started.
 
 恭喜你，启动成功！使用 [http://localhost:3000/todos](http://localhost:3000/todos) 体验项目。
 
-## 部署到云代码
+## 部署到 LeanEngine
 
-TODO
+首先确认已经安装 [命令行工具](https://leancloud.cn/docs/cloud_code_commandline.html)。
+
+部署到测试环境：
+
+```
+$ avoscloud deploy
+```
+
+部署到生产环境：
+
+```
+$ avoscloud publish
+```
+

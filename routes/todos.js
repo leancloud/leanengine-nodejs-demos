@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
-var AV = require('cloudcode-nodejs-sdk');
+var AV = require('leanengine-sdk');
 
 // `AV.Object.extend` 方法一定要放在全局变量，否则会造成堆栈溢出。
 // 详见： https://leancloud.cn/docs/js_guide.html#对象
 var Todo = AV.Object.extend('Todo');
 
 /**
- * 定义路由：获取所有 TODO 列表
+ * 定义路由：获取所有 Todo 列表
  */
 router.get('/', function(req, res, next) {
   var status = 0;
@@ -66,6 +65,9 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/**
+ * 定义路由：删除指定 todo
+ */
 router.delete('/:id', function(req, res, next) {
   var id = req.params.id;
   var status = req.query.status;
@@ -80,6 +82,9 @@ router.delete('/:id', function(req, res, next) {
   })
 })
 
+/**
+ * 定义路由：标记指定 todo 状态为「完成」
+ */
 router.post('/:id/done', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);
@@ -93,6 +98,9 @@ router.post('/:id/done', function(req, res, next) {
   })
 })
 
+/**
+ * 定义路由：标记指定 todo 状态为「未完成」
+ */
 router.post('/:id/undone', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);

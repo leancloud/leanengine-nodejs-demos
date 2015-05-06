@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var AV = require('cloudcode-nodejs-sdk');
+var AV = require('leanengine-sdk');
 
 router.get('/login', function(req, res, next) {
   var errMsg = req.query.errMsg;
