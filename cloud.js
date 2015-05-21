@@ -5,11 +5,8 @@ var _ = require('underscore');
  * 一个简单的云代码方法
  */
 AV.Cloud.define('hello', function(req, res) {
-  if (req.params.name) {
-    res.success('Hello~ ' + req.params.name);
-  } else {
-    res.success('Hello~ you are ...?');
-  }
+  console.log(req)
+  res.success('Hello world!');
 });
 
 // 从 content 中查找 tag 的正则表达式
