@@ -18,7 +18,7 @@
 执行下列代码来迁出项目：
   
 ```
-$ git clone git@github.com:sdjcw/leanengine-todo-demo.git
+$ git clone git@github.com:leancloud/leanengine-todo-demo.git
 $ cd leanengine-todo-demo
 
 ```
