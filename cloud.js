@@ -1,4 +1,4 @@
-var AV = require('leanengine-sdk');
+var AV = require('leanengine');
 var _ = require('underscore');
 
 /**

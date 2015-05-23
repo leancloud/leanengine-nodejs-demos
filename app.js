@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
-var AV = require('leanengine-sdk');
+var AV = require('leanengine');
 
 var users = require('./routes/users');
 var todos = require('./routes/todos');
