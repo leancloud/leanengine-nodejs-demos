@@ -17,7 +17,7 @@ var tagRe = /#(\w+)/g
  * 将 content 中的 #<tag> 标记都提取出来，保存到 tags 属性中
  */
 AV.Cloud.beforeSave('Todo', function(req, res) {
-  var todo = req.body;
+  var todo = req.object;
   var content = todo.get('content');
   var tags = todo.get('content').match(tagRe);
   tags = _.uniq(tags);

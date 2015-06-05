@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   query.equalTo('status', parseInt(status));
   query.include('author');
   query.descending('updatedAt');
-  query.limit(20);
+  query.limit(50);
   query.find({
     success: function(results) {
       res.render('todos', {
@@ -59,7 +59,7 @@ router.post('/', function(req, res, next) {
     success: function(todo) {
       res.redirect('/todos')
     },
-    error: function(err) {
+    error: function(todo, err) {
       next(err);
     }
   });

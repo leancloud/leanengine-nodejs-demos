@@ -27,6 +27,7 @@ block content
           col.col-xs-1
         tr
           th 描述
+          th 标签
           th 所有者
           th 操作
       each todo in todos
@@ -37,6 +38,7 @@ block content
                 label
                   input(type='checkbox', checked=(todo.get('status') == 1), onClick='submit()')
                   | #{todo.get('content')}
+          td= todo.get('tags') == null ? '' : todo.get('tags').join(',')
           td= todo.get('author') == null ? '' : todo.get('author').get('username')
           td
             form(action='/todos/#{todo.id}?_method=DELETE&status=#{status}', method='POST')
