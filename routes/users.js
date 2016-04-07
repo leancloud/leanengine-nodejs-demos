@@ -13,6 +13,7 @@ router.post('/login', function(req, res, next) {
   var password = req.body.password;
   AV.User.logIn(username, password, {
     success: function(user) {
+      res.saveCurrentUser(user);
       res.redirect('/todos');
     },
     error: function(user, err) {
@@ -38,6 +39,7 @@ router.post('/register', function(req, res, next) {
   user.set("password", password);
   user.signUp(null, {
     success: function(user) {
+      res.saveCurrentUser(user);
       res.redirect('/todos');
     },
     error: function(user, err) {
@@ -47,7 +49,8 @@ router.post('/register', function(req, res, next) {
 })
 
 router.get('/logout', function(req, res, next) {
-  AV.User.logOut();
+  req.currentUser.logOut();
+  res.clearCurrentUser();
   return res.redirect('/users/login');
 })
 

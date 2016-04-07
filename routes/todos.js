@@ -22,11 +22,12 @@ router.get('/', function(req, res, next) {
   query.descending('updatedAt');
   query.limit(50);
   query.find({
+    sessionToken: req.sessionToken,
     success: function(results) {
       res.render('todos', {
         title: 'TODO 列表',
-        user: AV.User.current(),
-        todos: results, 
+        user: req.currentUser,
+        todos: results,
         status: status,
         errMsg: errMsg
       });
@@ -56,6 +57,7 @@ router.post('/', function(req, res, next) {
     todo.set('author', req.AV.user);
   }
   todo.save(null, {
+    sessionToken: req.sessionToken,
     success: function(todo) {
       res.redirect('/todos')
     },
@@ -73,6 +75,7 @@ router.delete('/:id', function(req, res, next) {
   var status = req.query.status;
   var todo = AV.Object.createWithoutData('Todo', id);
   todo.destroy({
+    sessionToken: req.sessionToken,
     success: function(todo) {
       res.redirect('/todos?status=' + status);
     },
@@ -89,6 +92,7 @@ router.post('/:id/done', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);
   todo.save({'status': 1}, {
+    sessionToken: req.sessionToken,
     success: function() {
       res.redirect('/todos')
     },
@@ -105,6 +109,7 @@ router.post('/:id/undone', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);
   todo.save({'status': 0}, {
+    sessionToken: req.sessionToken,
     success: function() {
       res.redirect('/todos?status=1')
     },
