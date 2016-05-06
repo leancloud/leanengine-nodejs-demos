@@ -11,16 +11,13 @@ router.get('/login', function(req, res, next) {
 router.post('/login', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
-  AV.User.logIn(username, password, {
-    success: function(user) {
-      res.saveCurrentUser(user);
-      res.redirect('/todos');
-    },
-    error: function(user, err) {
-      res.redirect('/users/login?errMsg=' + JSON.stringify(err));
-    }
-  })
-})
+  AV.User.logIn(username, password).then(function(user) {
+    res.saveCurrentUser(user);
+    res.redirect('/todos');
+  }, function(err) {
+    res.redirect('/users/login?errMsg=' + JSON.stringify(err));
+  }).catch(next);
+});
 
 router.get('/register', function(req, res, next) {
   var errMsg = req.query.errMsg;
@@ -37,16 +34,13 @@ router.post('/register', function(req, res, next) {
   var user = new AV.User();
   user.set("username", username);
   user.set("password", password);
-  user.signUp(null, {
-    success: function(user) {
-      res.saveCurrentUser(user);
-      res.redirect('/todos');
-    },
-    error: function(user, err) {
-      res.redirect('/users/register?errMsg=' + JSON.stringify(err));
-    }
-  })
-})
+  user.signUp().then(function(user) {
+    res.saveCurrentUser(user);
+    res.redirect('/todos');
+  }, function(err) {
+    res.redirect('/users/register?errMsg=' + JSON.stringify(err));
+  }).catch(next);
+});
 
 router.get('/logout', function(req, res, next) {
   req.currentUser.logOut();
