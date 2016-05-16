@@ -6,7 +6,6 @@ var AV = require('leanengine');
 
 var users = require('./routes/users');
 var todos = require('./routes/todos');
-var cloud = require('./cloud');
 
 var app = express();
 
@@ -17,7 +16,8 @@ app.set('view engine', 'jade');
 app.use('/static', express.static('public'));
 
 // 加载云代码方法
-app.use(cloud);
+require('./cloud');
+app.use(AV.express());
 
 // 加载 cookieSession 以支持 AV.User 的会话状态
 app.use(AV.Cloud.CookieSession({ secret: '05XgTktKPMkU', maxAge: 3600000, fetchUser: true }));
@@ -53,7 +53,7 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-      message: err.message,
+      message: err.message || err,
       error: err
     });
   });
@@ -63,7 +63,7 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
-    message: err.message,
+    message: err.message || err,
     error: {}
   });
 });

@@ -1,85 +1,54 @@
-# TODO Demo
+# LeanEngine Node.js Todo Demo
 
-该项目是 [LeanCloud](https://leancloud.cn/) 的 [LeanEngine](https://leancloud.cn/docs/cloud_code_guide.html) 示例项目。
-使用 Node.js 运行时。
+该项目是 [LeanCloud](https://leancloud.cn/) 的 [LeanEngine](https://leancloud.cn/docs/leanengine_overview.html) 示例项目，使用 Node.js 和 Express 实现。
 
-[这里](http://todo-demo.avosapps.com/todos) 可以体验。
+在 [这里](https://todo-demo.leanapp.cn/todos) 可以在线体验。
 
 ## 功能
 
-* 用户注册
-* 用户登录
-* 用户会话管理
-* 业务数据的 CRUD：TODO 的查询，条件过滤等。
-* 简单的 ACL：不能修改别人创建 TODO 的状态。
+* 用户会话管理:注册、登录、登出
+* 业务数据的 CRUD：Todo 的创建和删除、条件查询、状态修改等。
+* 简单的 ACL：不能修改别人创建 Todo 的状态。
 
 ## 本地开发调试
 
-执行下列代码来迁出项目：
-  
+首先确认本机已经安装 [Node.js](http://nodejs.org/) 运行环境和 [LeanCloud 命令行工具](https://www.leancloud.cn/docs/leanengine_cli.html)，然后执行下列指令来检出项目：
+
 ```
-$ git clone git@github.com:leancloud/leanengine-todo-demo.git
+$ git clone https://github.com/leancloud/leanengine-todo-demo.git
 $ cd leanengine-todo-demo
-
 ```
 
-下载依赖包：
+安装依赖：
 
 ```
 $ npm install
 ```
 
-准备启动文件：
+关联应用：
 
 ```
-$ cp start.sh.example start.sh
-$ chmod +x start.sh
+lean app add origin <appId>
 ```
 
-因为开发调试使用了 `supervisor` 来做自动重启，所以你可能需要执行下列命令安装：
-
-```
-$ sudo npm install supervisor -g
-```
-
-在 LeanCloud 控制台新建项目，并将 `appId`，`appKey`，`masterKey` 填写到 `start.sh` 中。
-
-在 LeanCloud 数据控制台创建数据表 `Todo`。
+这里的 appId 填上你在 LeanCloud 上创建的某一应用的 appId 即可。
 
 启动项目：
 
 ```
-./start.sh
-```
-你将会看到类似下面的信息：
-
-```
-Running node-supervisor with
-  program 'server.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node server.js'
-Watching directory '/Users/chenwei/workspace/cloudcode-todo-demo' for changes.
-TODO demo started.
+lean up
 ```
 
 恭喜你，启动成功！使用 [http://localhost:3000/todos](http://localhost:3000/todos) 体验项目。
 
 ## 部署到 LeanEngine
 
-首先确认已经安装 [命令行工具](https://leancloud.cn/docs/cloud_code_commandline.html)。
-
-部署到测试环境：
-
+部署到预备环境（若无预备环境则直接部署到生产环境）：
 ```
-$ avoscloud deploy
+lean deploy
 ```
 
-部署到生产环境：
-
+将预备环境的代码发布到生产环境：
 ```
-$ avoscloud publish
+lean publish
 ```
-

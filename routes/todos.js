@@ -21,20 +21,15 @@ router.get('/', function(req, res, next) {
   query.include('author');
   query.descending('updatedAt');
   query.limit(50);
-  query.find({
-    success: function(results) {
-      res.render('todos', {
-        title: 'TODO 列表',
-        user: AV.User.current(),
-        todos: results, 
-        status: status,
-        errMsg: errMsg
-      });
-    },
-    error: function(err) {
-      next(err);
-    }
-  })
+  query.find({sessionToken: req.sessionToken}).then(function(results) {
+    res.render('todos', {
+      title: 'TODO 列表',
+      user: req.currentUser,
+      todos: results,
+      status: status,
+      errMsg: errMsg
+    });
+  }).catch(next);
 });
 
 /**
@@ -43,26 +38,20 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var content = req.body.content;
   var todo = new Todo();
-  if (req.AV.user) {
+  if (req.currentUser) {
+    todo.set('author', req.currentUser);
+
     // 设置 ACL，可以使该 todo 只允许创建者修改，其他人只读
     // 更多的 ACL 控制详见： https://leancloud.cn/docs/js_guide.html#其他对象的安全
-    var acl = new AV.ACL(req.AV.user);
+    var acl = new AV.ACL(req.currentUser);
     acl.setPublicReadAccess(true);
     todo.setACL(acl);
   }
   todo.set('content', content);
   todo.set('status', 0);
-  if (req.AV.user) {
-    todo.set('author', req.AV.user);
-  }
-  todo.save(null, {
-    success: function(todo) {
-      res.redirect('/todos')
-    },
-    error: function(todo, err) {
-      next(err);
-    }
-  });
+  todo.save(null, {sessionToken: req.sessionToken}).then(function(todo) {
+    res.redirect('/todos');
+  }).catch(next);
 });
 
 /**
@@ -72,14 +61,11 @@ router.delete('/:id', function(req, res, next) {
   var id = req.params.id;
   var status = req.query.status;
   var todo = AV.Object.createWithoutData('Todo', id);
-  todo.destroy({
-    success: function(todo) {
-      res.redirect('/todos?status=' + status);
-    },
-    error: function(todo, err) {
-      res.redirect('/todos?status=' + status + '&errMsg=' + JSON.stringify(err))
-    }
-  })
+  todo.destroy({sessionToken: req.sessionToken}).then(function() {
+    res.redirect('/todos?status=' + status);
+  }, function(err) {
+    res.redirect('/todos?status=' + status + '&errMsg=' + JSON.stringify(err));
+  }).catch(next);
 })
 
 /**
@@ -88,14 +74,11 @@ router.delete('/:id', function(req, res, next) {
 router.post('/:id/done', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);
-  todo.save({'status': 1}, {
-    success: function() {
-      res.redirect('/todos')
-    },
-    error: function(todo, err) {
-      res.redirect('/todos?errMsg=' + JSON.stringify(err))
-    }
-  })
+  todo.save({status: 1}, {sessionToken: req.sessionToken}).then(function() {
+    res.redirect('/todos');
+  }, function(err) {
+    res.redirect('/todos?errMsg=' + JSON.stringify(err));
+  }).catch(next);
 })
 
 /**
@@ -104,14 +87,11 @@ router.post('/:id/done', function(req, res, next) {
 router.post('/:id/undone', function(req, res, next) {
   var id = req.params.id;
   var todo = AV.Object.createWithoutData('Todo', id);
-  todo.save({'status': 0}, {
-    success: function() {
-      res.redirect('/todos?status=1')
-    },
-    error: function(status, err) {
-      res.redirect('/todos?status=1&errMsg=' + JSON.stringify(err))
-    }
-  })
+  todo.save({status: 1}, {sessionToken: req.sessionToken}).then(function() {
+    res.redirect('/todos?status=1');
+  }, function(err) {
+    res.redirect('/todos?status=1&errMsg=' + JSON.stringify(err));
+  }).catch(next);
 })
 
 module.exports = router;
