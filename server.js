@@ -3,7 +3,7 @@ var AV = require('leanengine');
 AV.init({
   appId: fAiK2likQHlFTeLfvhCgbyKY-gzGzoHsz,
   appKey: QfLVNnnrxogVwOLDIoN0bWqs,
-  masterKey: 9l4VTWckkJ9vNPbf2xBulmkf
+  masterKey: 9l4VTWckkJ9vNPbf2xBulmkf,
 });
 
 var app = require('./app');
