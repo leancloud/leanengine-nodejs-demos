@@ -11,7 +11,7 @@
     "debug": "~2.1.1",
     "express": "^4.12.3",
     "jade": "^1.9.2",
-    "leanengine": "^1.0.0-beta",
+    "leanengine": "^1.0.0",
     "method-override": "^2.3.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
