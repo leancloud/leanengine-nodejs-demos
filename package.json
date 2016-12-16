@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "./node_modules/.bin/nodemon server.js"
   },
   "dependencies": {
     "body-parser": "^1.12.2",
@@ -16,5 +17,8 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
