@@ -51,7 +51,7 @@ function doTask() {
   
 }
 
-AV.Cloud.define('doTask', function(req, res) {
+AV.Cloud.define('asyncTask', function(req, res) {
   var task = new Task();
   var taskName = req.params.name;
   // 存储任务队列，这里只设置了 name 字段，可以根据业务需求增加其他的字段信息
@@ -70,6 +70,7 @@ AV.Cloud.define('doTask', function(req, res) {
     }).catch(function (error) {
       // 任务失败，设置状态为「失败」
       task.set('status', 'failure');
+      task.set('errMsg', error.message);
       task.save().then(function(task) {
         console.log('task failed');
       }).catch(function(error) {
