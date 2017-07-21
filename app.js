@@ -4,8 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
 var AV = require('leanengine');
 
-var users = require('./routes/users');
-var todos = require('./routes/todos');
+AV.init(process.env.LEANCLOUD_APP_ID, process.env.LEANCLOUD_APP_KEY, process.env.LEANCLOUD_APP_MASTER_KEY);
 
 var app = express();
 
@@ -31,8 +30,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
-app.use('/todos', todos);
-app.use('/users', users);
+app.use('/todos', require('./routes/todos'));
+app.use('/users', require('./routes/users'));
+app.use('/captcha', require('./routes/captcha'))
 
 app.get('/', function(req, res) {
   res.redirect('/todos');
