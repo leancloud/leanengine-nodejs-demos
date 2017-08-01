@@ -1,6 +1,9 @@
-*~
-.*.swp
-node_modules/
+node_modules
+npm-debug.log
 start.sh
-.avoscloud/
-.leancloud/
+.avoscloud
+.leancloud
+
+# VIM
+*~
+*.swp

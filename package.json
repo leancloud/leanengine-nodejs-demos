@@ -1,11 +1,11 @@
 {
-  "name": "cloudcode-todo-demo",
-  "version": "0.0.1",
+  "name": "leanengine-nodejs-demos",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "./node_modules/.bin/nodemon server.js",
-    "test": "mocha -r should"
+    "dev": "nodemon server.js",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "^1.12.2",
@@ -14,7 +14,8 @@
     "debug": "~2.1.1",
     "express": "^4.12.3",
     "jade": "^1.9.2",
-    "leanengine": "^2.0.0",
+    "leancloud-storage": "^3.0.0",
+    "leanengine": "^3.0.0",
     "method-override": "^2.3.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
