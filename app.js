@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var timeout = require('connect-timeout');
 var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
