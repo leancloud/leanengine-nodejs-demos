@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  </head>
+  <body>
+    <h1>page2</h1>
+    <script>
+      var APP_ID = 'kdrt5GNCjojUjiIujawd5A4n-gzGzoHsz';
+      var APP_KEY = 'Xvxjo6SVUITIqet69q3mudlF';
+
+      AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+      });
+
+      console.log('当前登录用户：%s', AV.User.current() && AV.User.current().get('username'))
+    </script>
+  </body>
+</html>

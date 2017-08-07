@@ -8,12 +8,23 @@ var Task = AV.Object.extend('Task');
  * 一个简单的云代码方法
  */
 AV.Cloud.define('hello', function(req, res) {
-  console.log(req)
+  console.log(req);
   res.success('Hello world!');
 });
 
+AV.Cloud.define('whoami', function(req, res) {
+  console.log('whoami:', req.currentUser);
+  var username = req.currentUser && req.currentUser.get('username');
+  res.success(username);
+});
+
+AV.Cloud.define('noFetchUser', {fetchUser: false}, function(req, res) {
+  console.log('noFetchUser: user=%s, sessionToken=%s', req.currentUser, req.sessionToken);
+  res.success();
+});
+
 // 从 content 中查找 tag 的正则表达式
-var tagRe = /#(\w+)/g
+var tagRe = /#(\w+)/g;
 
 /**
  * Todo 的 beforeSave hook 方法
@@ -21,12 +32,11 @@ var tagRe = /#(\w+)/g
  */
 AV.Cloud.beforeSave('Todo', function(req, res) {
   var todo = req.object;
-  var content = todo.get('content');
   var tags = todo.get('content').match(tagRe);
   tags = _.uniq(tags);
   todo.set('tags', tags);
   res.success();
-})
+});
 
 /**
 云函数超时示例
@@ -65,13 +75,13 @@ AV.Cloud.define('asyncTask', function(req, res) {
       // 任务成功完成，设置状态为「成功」
       task.set('status', 'success');
       return task.save();
-    }).then(function(task) {
+    }).then(function(_task) {
       console.log('task succeed');
     }).catch(function (error) {
       // 任务失败，设置状态为「失败」
       task.set('status', 'failure');
       task.set('errMsg', error.message);
-      task.save().then(function(task) {
+      task.save().then(function(_task) {
         console.log('task failed');
       }).catch(function(error) {
         console.log('更新 task 失败', error);

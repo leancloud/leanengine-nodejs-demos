@@ -4,7 +4,7 @@ var express = require('express');
 var timeout = require('connect-timeout');
 var path = require('path');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 var AV = require('leanengine');
 
 // 加载云函数定义，你可以将云函数拆分到多个文件方便管理，但需要在主文件中加载它们
@@ -31,14 +31,14 @@ app.use(AV.Cloud.HttpsRedirect());
 // 加载 cookieSession 以支持 AV.User 的会话状态
 app.use(AV.Cloud.CookieSession({ secret: '05XgTktKPMkU', maxAge: 3600000, fetchUser: true }));
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
-app.use('/captcha', require('./routes/captcha'))
+app.use('/captcha', require('./routes/captcha'));
 
 app.get('/', function(req, res) {
   res.redirect('/todos');
@@ -54,7 +54,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res, _next) {
   if (req.timedout && req.headers.upgrade === 'websocket') {
     // 忽略 websocket 的超时
     return;
@@ -69,7 +69,7 @@ app.use(function(err, req, res, next) {
   }
   res.status(statusCode);
   // 默认不输出异常详情
-  var error = {}
+  var error = {};
   if (app.get('env') === 'development') {
     // 如果是开发环境，则将异常堆栈输出到页面，方便开发调试
     error = err;

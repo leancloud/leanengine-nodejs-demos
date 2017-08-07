@@ -63,7 +63,7 @@ router.post('/', function(req, res, next) {
   }
   todo.set('content', content);
   todo.set('status', 0);
-  todo.save(null, {sessionToken: req.sessionToken}).then(function(todo) {
+  todo.save(null, {sessionToken: req.sessionToken}).then(function() {
     res.redirect('/todos');
   }).catch(next);
 });
@@ -78,9 +78,9 @@ router.delete('/:id', function(req, res, next) {
   todo.destroy({sessionToken: req.sessionToken}).then(function() {
     res.redirect('/todos?status=' + status);
   }, function(err) {
-    res.redirect('/todos?status=' + status + '&errMsg=' + JSON.stringify(err));
+    res.redirect('/todos?status=' + status + '&errMsg=' + err.message);
   }).catch(next);
-})
+});
 
 /**
  * 定义路由：标记指定 todo 状态为「完成」
@@ -91,9 +91,9 @@ router.post('/:id/done', function(req, res, next) {
   todo.save({status: 1}, {sessionToken: req.sessionToken}).then(function() {
     res.redirect('/todos');
   }, function(err) {
-    res.redirect('/todos?errMsg=' + JSON.stringify(err));
+    res.redirect('/todos?errMsg=' + err.message);
   }).catch(next);
-})
+});
 
 /**
  * 定义路由：标记指定 todo 状态为「未完成」
@@ -104,8 +104,8 @@ router.post('/:id/undone', function(req, res, next) {
   todo.save({status: 1}, {sessionToken: req.sessionToken}).then(function() {
     res.redirect('/todos?status=1');
   }, function(err) {
-    res.redirect('/todos?status=1&errMsg=' + JSON.stringify(err));
+    res.redirect('/todos?status=1&errMsg=' + err.message);
   }).catch(next);
-})
+});
 
 module.exports = router;
