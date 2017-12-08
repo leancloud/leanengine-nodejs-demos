@@ -6,17 +6,21 @@
 
 ## 功能目录
 
-* 用户会话管理:注册、登录、登出
-* 业务数据的 CRUD：Todo 的创建和删除、条件查询、状态修改等。
-* 简单的 ACL：不能修改别人创建 Todo 的状态。
+* TODO List: 一个简单的 TODO 应用，包含：
+  * 用户会话管理：注册、登录、登出，主要代码 [routes/users.js](routes/users.js) 。
+  * 业务数据的 CRUD：Todo 的创建和删除、条件查询、状态修改等，主要代码 [routes/todos.js](routes/todos.js) 。
+  * 简单的 ACL：不能修改别人创建 Todo 的状态。
+* 微信公众号：可以实现微信公众号聊天机器人，相关文档 [微信公众平台开发指南](https://leancloud.cn/docs/webhosting_weixin.html) ，主要代码 [routes/wechat.js](routes/wechat.js) 。
+* 图形验证码：可用于用户注册、短信发送等防止注册机的场景，主要代码 [routes/captcha.js](routes/captcha.js) 。
+
 
 ## 本地运行
 
 首先确认本机已经安装 [Node.js](http://nodejs.org/) 运行环境和 [LeanCloud 命令行工具](https://leancloud.cn/docs/leanengine_cli.html)，然后执行下列指令：
 
 ```
-$ git clone https://github.com/leancloud/node-js-getting-started.git
-$ cd node-js-getting-started
+$ git clone https://github.com/leancloud/leanengine-nodejs-demos.git
+$ cd leanengine-nodejs-demos
 ```
 
 安装依赖：

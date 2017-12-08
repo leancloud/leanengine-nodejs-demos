@@ -2,9 +2,7 @@ var Captchapng = require('captchapng');
 var AV = require('leanengine');
 
 var router = require('express').Router();
-const config = require('../config')
-
-let captchaUser;
+const config = require('../config');
 
 /*
  * 图形验证码示例
@@ -30,18 +28,16 @@ router.get('/image', function(req, res, next) {
       captchaId: captcha.id,
       imageUrl: 'data:image/png;base64,' + picture.getBase64()
     });
-  }).catch(next)
+  }).catch(next);
 });
 
 /* 提交验证码，需要提交 captchaId、captchaCode、mobilePhoneNumber，认证成功才会发送短信 */
 router.post('/verify', function(req, res, next) {
   const captchaId = req.body.captchaId;
-  const captchaCode = parseInt(req.body.captchaCode)
-  const mobilePhoneNumber = req.body.mobilePhoneNumber
+  const captchaCode = parseInt(req.body.captchaCode);
   // 将「验证 id 和 code 是否有效」的查询放在「更新验证码状态」的保存操作中，
   // 保证两个操作的原子化
-  return AV.Object.createWithoutData('Captcha', captchaId)
-  .save({
+  return AV.Object.createWithoutData('Captcha', captchaId).save({
     isUsed: true
   }, {
     useMasterKey: true, // 确保使用 masterKey 权限进行操作，否则无权读写 captcha 记录
@@ -50,9 +46,9 @@ router.post('/verify', function(req, res, next) {
       .equalTo('code', captchaCode)
       .greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - config.captcha.ttl))
       .equalTo('isUsed', false),
-  }).then(function(captcha) {
-    // 解开注释就可以发短信了
-    // return AV.User.requestMobilePhoneVerify(mobilePhoneNumber)
+  }).then(function() {
+    // 通过验证，之后可以做需要的业务逻辑，比如发送短信
+    // return AV.User.requestMobilePhoneVerify(req.body.mobilePhoneNumber)
   }).then(function() {
     return res.send();
   }).catch(function(err) {
@@ -63,8 +59,8 @@ router.post('/verify', function(req, res, next) {
       // 指定 id 不存在
       return res.sendStatus(401);
     }
-    next(err)
-  })
+    next(err);
+  });
 });
 
 /*
