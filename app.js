@@ -39,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
 app.use('/captcha', require('./routes/captcha'));
+app.use('/batch-update', require('./routes/batch-update'));
 
 app.get('/', function(req, res) {
   res.redirect('/todos');
