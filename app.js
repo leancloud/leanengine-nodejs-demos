@@ -6,11 +6,15 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var AV = require('leanengine');
+var expressWs = require('express-ws');
 
 // 加载云函数定义，你可以将云函数拆分到多个文件方便管理，但需要在主文件中加载它们
 require('./cloud');
 
 var app = express();
+
+// 启用 WebSocket 支持，如不需要可去除
+expressWs(app);
 
 // 设置模板引擎
 app.set('views', path.join(__dirname, 'views'));
@@ -36,10 +40,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
+app.use('/batch-update', require('./routes/batch-update'));
+app.use('/captcha', require('./routes/captcha'));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
-app.use('/captcha', require('./routes/captcha'));
-app.use('/batch-update', require('./routes/batch-update'));
+app.use('/websocket', require('./routes/websocket'));
 
 app.get('/', function(req, res) {
   res.redirect('/todos');
