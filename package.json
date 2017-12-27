@@ -16,12 +16,12 @@
     "ejs": "^2.5.7",
     "express": "^4.12.3",
     "express-ws": "^3.0.0",
+    "ioredis": "^3.2.2",
     "jade": "^1.9.2",
     "leancloud-storage": "^3.0.0",
     "leanengine": "^3.0.0",
     "method-override": "^2.3.2",
-    "morgan": "~1.5.1",
-    "serve-favicon": "~2.2.0",
+    "moment": "^2.13.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

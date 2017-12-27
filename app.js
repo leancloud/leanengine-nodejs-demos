@@ -46,6 +46,8 @@ app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
 app.use('/websocket', require('./routes/websocket'));
 
+app.use('/lean-cache', require('./lean-cache'));
+
 app.get('/', function(req, res) {
   res.redirect('/todos');
 });
