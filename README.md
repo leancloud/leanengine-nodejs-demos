@@ -28,6 +28,7 @@
 - Todo List（`routes/todos`）：基于云存储实现数据的增、删、改、查，并使用 ACL 来保护数据。
 - 用户系统（`routes/users`）：基于云存储实现用户的注册、登录、登出。
 - WebSocket（`routes/websocket`）：基于 WebSocket 实现实时的数据传输。
+- 微信公众号（`routes/wecaht`）：微信公众号聊天机器人，文档见 [微信公众平台开发指南](https://leancloud.cn/docs/webhosting_weixin.html) 。
 
 ## 云函数示例
 

@@ -33,7 +33,7 @@ app.enable('trust proxy');
 app.use(AV.Cloud.HttpsRedirect());
 
 // 加载 cookieSession 以支持 AV.User 的会话状态
-app.use(AV.Cloud.CookieSession({ secret: '05XgTktKPMkU', maxAge: 3600000, fetchUser: true }));
+app.use(AV.Cloud.CookieSession({ secret: 'randomString', maxAge: 3600000, fetchUser: true }));
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
@@ -45,6 +45,7 @@ app.use('/captcha', require('./routes/captcha'));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
 app.use('/websocket', require('./routes/websocket'));
+app.use('/wechat', require('./routes/wechat'));
 
 app.use('/lean-cache', require('./lean-cache'));
 
