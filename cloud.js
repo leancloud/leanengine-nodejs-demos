@@ -7,9 +7,8 @@ var Task = AV.Object.extend('Task');
 /**
  * 一个简单的云代码方法
  */
-AV.Cloud.define('hello', function(req, res) {
-  console.log(req);
-  res.success('Hello world!');
+AV.Cloud.define('hello', function() {
+  return 'Hello world!';
 });
 
 AV.Cloud.define('whoami', function(req, res) {
@@ -58,7 +57,7 @@ function doTask() {
       }
     }, randomTime);
   });
-  
+
 }
 
 AV.Cloud.define('asyncTask', function(req, res) {
@@ -92,5 +91,10 @@ AV.Cloud.define('asyncTask', function(req, res) {
     res.err(error);
   });
 });
+
+function printRequest(label, request) {
+  console.log(label, request.params, request.object, request.user, request.body);
+}
+
 
 module.exports = AV.Cloud;

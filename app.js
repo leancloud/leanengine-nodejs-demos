@@ -4,7 +4,6 @@ var express = require('express');
 var timeout = require('connect-timeout');
 var path = require('path');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
 var AV = require('leanengine');
 var expressWs = require('express-ws');
 
@@ -35,17 +34,20 @@ app.use(AV.Cloud.HttpsRedirect());
 // 加载 cookieSession 以支持 AV.User 的会话状态
 app.use(AV.Cloud.CookieSession({ secret: 'randomString', maxAge: 3600000, fetchUser: true }));
 
-app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
 app.use('/batch-update', require('./routes/batch-update'));
 app.use('/captcha', require('./routes/captcha'));
+app.use('/delay-and-retry', require('./routes/delay-and-retry'));
+app.use('/imagemagick', require('./routes/imagemagick'));
+app.use('/meta', require('./routes/meta'));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
 app.use('/websocket', require('./routes/websocket'));
 app.use('/wechat', require('./routes/wechat'));
+app.use('/xml', require('./routes/xml'));
 
 app.use('/lean-cache', require('./lean-cache'));
 

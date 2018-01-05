@@ -11,6 +11,7 @@
 - 关联数据缓存（`lean-cache/associated-data`）：缓存一些数据量少、查询频繁、不常修改、关联结构复杂的关联数据。
 - 图形验证码（`lean-cache/captcha`）：利用图形验证码保护短信发送接口。
 - 排行榜缓存（`lean-cache/leaderboard`）：维护一个用户游戏分数的排行榜，并在次日将榜单归档到云存储中。
+- 发布/订阅（`lean-cache/pubsub`）：使用 Redis 来实现发布/订阅模式。
 - 热点只读数据缓存（`lean-cache/readonly`）：将几乎只读的配置（例如购物网站的商品分类信息）通过 Class Hook 缓存在 Redis。
 - 节点选举和锁（`lean-cache/redlock`）：多个任务共同竞争一个资源（锁），确保同一时间只有一个任务能够在执行（持有这个锁）。
 - 任务队列（`lean-cache/task-queue`）：保证大量任务以指定的并发数量顺序地执行，以减少对其他服务的压力。
@@ -25,10 +26,14 @@
 
 - 批量更新（`routes/batch-update`）：根据一定条件批量更新大量的对象。
 - 短信图形验证码（`routes/captcha`）：要求用户先正确填写一个图形验证码，再发送短信。
+- 延时和重试（`routes/delay-and-retry`）：使用云函数的任务队列功能执行延时任务、在失败时重试。
+- 图片处理（`routes/imagemagick`）：使用 imagemagick 对图片进行简单的处理。
+- 元信息（`routes/meta`）：从运行环境或客户端获元信息。
 - Todo List（`routes/todos`）：基于云存储实现数据的增、删、改、查，并使用 ACL 来保护数据。
 - 用户系统（`routes/users`）：基于云存储实现用户的注册、登录、登出。
 - WebSocket（`routes/websocket`）：基于 WebSocket 实现实时的数据传输。
 - 微信公众号（`routes/wecaht`）：微信公众号聊天机器人，文档见 [微信公众平台开发指南](https://leancloud.cn/docs/webhosting_weixin.html) 。
+- XML（`routes/xml`）：生成 XML。
 
 ## 云函数示例
 

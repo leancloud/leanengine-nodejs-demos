@@ -16,14 +16,15 @@
     "ejs": "^2.5.7",
     "express": "^4.12.3",
     "express-ws": "^3.0.0",
+    "gm": "1.22.0",
     "ioredis": "^3.2.2",
     "jade": "^1.9.2",
     "leancloud-storage": "^3.0.0",
-    "leanengine": "^3.0.0",
-    "method-override": "^2.3.2",
+    "leanengine": "leancloud/leanengine-node-sdk#cloud-queue",
     "moment": "^2.13.0",
     "underscore": "^1.8.3",
-    "wechat": "^2.1.0"
+    "wechat": "^2.1.0",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
