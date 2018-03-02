@@ -43,6 +43,7 @@ app.use('/captcha', require('./routes/captcha'));
 app.use('/cloud-queue', require('./routes/cloud-queue'));
 app.use('/crawler', require('./routes/crawler'));
 app.use('/imagemagick', require('./routes/imagemagick'));
+app.use('/long-running', require('./routes/long-running'));
 app.use('/meta', require('./routes/meta'));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
