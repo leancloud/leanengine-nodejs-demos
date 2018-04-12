@@ -1,0 +1,3 @@
+systemDependencies:
+  - chrome-headless
+  - fonts-wqy
