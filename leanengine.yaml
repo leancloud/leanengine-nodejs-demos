@@ -1,3 +1,2 @@
 systemDependencies:
-  - chrome-headless
-  - fonts-wqy
+  - node-canvas

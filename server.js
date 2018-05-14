@@ -1,6 +1,5 @@
-var fs = require('fs');
-var url = require('url');
-const puppeteer = require('puppeteer');
+const url = require('url');
+const Canvas = require('canvas');
 
 require('http').createServer(function(req, res) {
   const urlInfo = url.parse(req.url, true)
@@ -10,49 +9,20 @@ require('http').createServer(function(req, res) {
     return res.end();
   }
 
-  if (urlInfo.query.url) {
-    makeScreenshot(urlInfo.query.url).then( (filename) => {
-      fs.readFile(filename, function(err, buffer) {
-        if (err) {
-          res.end(err.message);
-        } else {
-          res.setHeader('Content-Type', 'image/png');
-          res.end(buffer);
-        }
-      });
-    }).catch( err => {
-      console.log(err)
-      res.end(err.message);
-    });
-  } else {
-    res.end('You can visit https://snapcat.leanapp.cn/?url=https://leancloud.cn/docs');
-  }
+  const canvas = new Canvas(200, 200);
+  const ctx = canvas.getContext('2d');
+
+  ctx.font = '30px Impact';
+  ctx.rotate(.1);
+  ctx.fillText('Awesome!', 50, 100);
+
+  var te = ctx.measureText('Awesome!');
+  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+  ctx.beginPath();
+  ctx.lineTo(50, 102);
+  ctx.lineTo(50 + te.width, 102);
+  ctx.stroke();
+
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<img src="' + canvas.toDataURL() + '" />');
 }).listen(3000);
-
-var counter = 0;
-
-async function makeScreenshot(url) {
-  const filename = `./${counter++}.png`;
-
-  const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/google-chrome',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
-
-  const page = await browser.newPage();
-  await page.goto(url);
-
-  await page.setViewport({
-    width: 1440,
-    height: 900
-  });
-
-  await page.screenshot({
-    fullPage: true,
-    path: filename
-  });
-
-  await browser.close();
-
-  return filename;
-}

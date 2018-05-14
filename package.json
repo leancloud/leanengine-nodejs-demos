@@ -3,6 +3,6 @@
     "node": "8"
   },
   "dependencies": {
-    "puppeteer": "^1.2.0"
+    "canvas": "^1.6.10"
   }
 }
