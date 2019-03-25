@@ -1,59 +1,55 @@
-var AV = require('leanengine');
-var express = require('express');
-var Promise = require('bluebird');
-
-var router = express.Router();
-
-var Post = AV.Object.extend('Post');
+const AV = require('leanengine')
+const Promise = require('bluebird')
 
 /*
  * 批量更新数据示例
  *
  * LeanCloud 只提供了更新单个对象的能力，因此在需要批量更新大量对象时，我们需要先找出需要更新的对象，再逐个更新。
  *
- * 下面提供了两种更新的方式，你可以直接将这两个工具函数复制到你的项目使用：
+ * 下面提供了两种更新的方式，你可以根据需要选择其中一个：
  * - `batchUpdateByQuery`: 通过一个查询来找到需要更新的对象（例如我们要把 status 字段从 a 更新到 b，那么我们就查询 status == a 的对象），
  *                         这种情况下需要保证未更新的对象一定符合这个查询、已更新的对象一定不符合这个查询，否则可能会出现遗漏或死循环。
  * - `batchUpdateAll`: 通过 createdAt 从旧到新更新一个数据表中所有的对象，如果中断需要从日志中的上次中断处重新执行（不能从头执行，否则会重复）。
+ *
+ *  安装依赖：
+ *
+ *   npm install bluebird
+ *   
  */
 
-router.post('/by-query/:status?', function(req, res, next) {
-  var status = req.params.status || 'a';
+const Post = AV.Object.extend('Post');
 
-  var createQuery = function() {
-    return (new AV.Query(Post)).notEqualTo('status', status);
-  };
+AV.Cloud.define('BatchUpdateByQuery', async (request) => {
+  const status = request.params.status || 'a';
 
-  var performUpdate = function(object) {
-    console.log('performUpdate for', object.id);
-    object.set('status', status);
-    return object.save();
+  const createQuery = () => {
+    return new AV.Query(Post).notEqualTo('status', status)
   }
 
-  batchUpdateByQuery(createQuery, performUpdate).then( () => {
-    console.log('batch update finished');
-    res.send('batch update finished');
-  }).catch(next);
-});
+  await batchUpdateByQuery(createQuery, (object) => {
+    console.log('performUpdate for', object.id)
+    object.set('status', status)
+    return object.save()
+  })
 
-router.post('/all/:status?', function(req, res, next) {
-  var status = req.params.status || 'a';
+  console.log('batch update finished')
+})
 
-  var createQuery = function() {
-    return new AV.Query(Post);
-  };
+AV.Cloud.define('BatchUpdateAll', async (request) => {
+  const status = req.params.status || 'a';
 
-  var performUpdate = function(object) {
-    console.log('performUpdate for', object.id);
-    object.set('status', status);
-    return object.save();
+  const createQuery = () => {
+    return new AV.Query(Post)
   }
 
-  batchUpdateAll(createQuery, performUpdate).then( () => {
-    console.log('batch update finished');
-    res.send('batch update finished');
-  }).catch(next);
-});
+  await batchUpdateAll(createQuery, (object) => {
+    console.log('performUpdate for', object.id)
+    object.set('status', status)
+    return object.save()
+  })
+
+  console.log('batch update finished')
+})
 
 /*
  * batchUpdateByQuery 和 batchUpdateAll 的参数：
@@ -133,5 +129,3 @@ function batchUpdateAll(createQuery, performUpdate, options = {}) {
 
   return next(options.lastCreatedAt);
 }
-
-module.exports = router;

@@ -7,11 +7,14 @@ var {redisClient} = require('../redis')
 /*
  * 使用 LeanCache 实现排行榜
  *
- *     npm install moment lodash
- *
  * 排行榜的查询会比较频繁，而且被查询的都是同一份数据，且数据变化则较少，比较适合维护在 LeanCache 中。
  * 这个例子中我们将允许用户提交自己的游戏分数，然后在 LeanCache 中维护一个全部用户的排行榜，
  * 每天凌晨会将前一天的排行归档到云存储中，并清空排行榜。
+ *
+ * 安装依赖：
+ *
+ *   npm install moment lodash
+ *
  */
 
 /* 用于提交最高分数的 LUA 脚本，只会在新分数比最高分还高时才更新分数 */

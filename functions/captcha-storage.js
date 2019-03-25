@@ -4,12 +4,16 @@ const Captchapng = require('captchapng')
 /*
  * 使用图形验证码限制短信接口（使用云存储后端）
  *
- *   npm install captchapng
- *
- *   env CAPTCHA_TTL=600000 # 图形验证码有效期（毫秒）
- *
  * 在这个例子中，我们会要求用户填写一个图形验证码，只有当验证码填写正确时，才会发送短信，来预防恶意的攻击行为。
  *
+ * 安装依赖：
+ *
+ *   npm install captchapng
+ *
+ * 设置环境变量：
+ *
+ *   env CAPTCHA_TTL=600000 # 图形验证码有效期（毫秒）
+ *   
  */
 
 /* 获取一个验证码，会返回一个 captchaId 和一个 base64 格式的图形验证码 */

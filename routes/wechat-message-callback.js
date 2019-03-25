@@ -4,11 +4,16 @@ const wechat = require('wechat')
 /*
  * 接受并自动回复微信公众平台的用户消息回调
  *
+ * 安装依赖：
+ *
  *   npm install wechat
+ *
+ * 设置环境变量：
  *
  *   env WECHAT_APPID # 微信公众平台应用 ID（必填）
  *   env WECHAT_TOKEN # 微信公众平台 Key（必填）
  *   env encodingAESKey # 微信公众平台 AES 密钥（必填）
+ *
  */
 
 const wechatConfig = {
@@ -26,7 +31,7 @@ router.use('/', wechat(wechatConfig)
         type: 'text',
         content: '你好!'
       })
-    } else {
+    } else {r
       res.reply({
         type: 'text',
         content: '抱歉，请对我说「你好」'

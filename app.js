@@ -38,10 +38,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 可以将一类的路由单独保存在一个文件中
-app.use('/batch-update', require('./routes/batch-update'));
 app.use('/cloud-queue', require('./routes/cloud-queue'));
 app.use('/crawler', require('./routes/crawler'));
-app.use('/imagemagick', require('./routes/imagemagick'));
 app.use('/long-running', require('./routes/long-running'));
 app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));

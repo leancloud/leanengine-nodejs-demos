@@ -4,7 +4,10 @@ const _ = require('lodash')
 /*
  * 从运行环境或客户端读取元信息（环境变量、用户、参数请求头）
  *
+ * 安装依赖：
+ *
  *   npm install lodash
+ *
  */
 
 // 返回环境变量
