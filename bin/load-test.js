@@ -5,6 +5,17 @@ const Measured = require('measured');
 const Promise = require('bluebird');
 const Queue = require('promise-queue');
 
+/*
+ * load-test [concurrent]
+ *   concurrent: 并发请求的个数（默认 30）
+ *
+ * 对代码片段进行压力测试的脚本
+ *
+ *    npm install measured bluebird promise-queue
+ *
+ * 该脚本会对 `request` 函数进行压力测试（函数的内容需要你自行编写），给出速率和耗时等统计数据，适用于对核心业务逻辑的代码片段进行性能测试。
+ */
+
 const MAX_CONCURRENT = parseInt(process.argv[process.argv.length - 1]) || 30;
 
 console.log('MAX_CONCURRENT:', MAX_CONCURRENT);

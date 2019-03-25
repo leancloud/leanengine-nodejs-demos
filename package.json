@@ -21,7 +21,7 @@
     "ioredis": "^3.2.2",
     "jade": "^1.9.2",
     "leancloud-storage": "^3.0.0",
-    "leanengine": "github:leancloud/leanengine-node-sdk#cloud-queue",
+    "leanengine": "^3.0.0",
     "measured": "^1.1.0",
     "moment": "^2.13.0",
     "promise-queue": "^2.2.5",
@@ -38,6 +38,6 @@
     "supertest-as-promised": "^4.0.2"
   },
   "engines": {
-    "node": "8.x"
+    "node": "10.x"
   }
 }
