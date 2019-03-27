@@ -24,6 +24,7 @@
     "leanengine": "^3.3.3",
     "measured": "^1.1.0",
     "moment": "^2.13.0",
+    "promise-memoize": "^1.2.1",
     "promise-queue": "^2.2.5",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",

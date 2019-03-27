@@ -12,7 +12,7 @@ const _ = require('lodash')
 
 // 返回环境变量
 // **注意！** 环境变量中可能包含有有你自行添加的敏感信息（如第三方平台的密钥），因此该函数只会在开发环境下工作，请谨慎在线上应用中添加该函数。
-AV.Cloud.define('getenvironments', (request) => {
+AV.Cloud.define('getEnvironments', (request) => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     // 去除 masterKey 和 LeanCache 连接字符串等含有敏感信息的环境变量
     return _.mapValues(process.env, function(value, key) {
