@@ -14,12 +14,14 @@
 
 | 文件名       | 提供的云函数 | 介绍 |
 | ------------ | ------------ | ---- |
-| [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImage<br>requestMobilePhoneVerify | 使用图形验证码限制短信接口（使用云存储后端）。  |
+| [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImageStorage<br>requestMobilePhoneVerifyStorage | ✅ 使用图形验证码限制短信接口（使用云存储后端）。  |
+| [captcha-cache.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-cache.js) | getCaptchaImageCache<br>requestMobilePhoneVerifyCache | 使用图形验证码限制短信接口（使用 LeanCache）（需要 LeanCache）。  |
 | [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | 使用 LeanCache 实现排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
-| [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | BatchUpdateByQuery<br>BatchUpdateAll | 批量更新数据示例。 |
-| [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | 使用 imageMagick 处理图像。 |
-| [crawler.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/crawler.js) | crawlWebsite<br>crawling | 爬虫示例。 |
+| [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | batchUpdateByQuery<br>batchUpdateAll | 批量更新数据示例。 |
+| [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
+| [crawler.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/crawler.js) | crawlWebsite<br>crawling | 爬虫示例，使用 Cloud Queue 抓取一个站点下的所有网页。 |
+| [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
 
 ## 功能列表（网站托管）
 

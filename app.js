@@ -44,7 +44,6 @@ app.use('/todos', require('./routes/todos'));
 app.use('/users', require('./routes/users'));
 app.use('/websocket', require('./routes/websocket'));
 app.use('/wechat', require('./routes/wechat-message-callback'))
-app.use('/xml', require('./routes/xml'));
 
 app.use('/lean-cache', require('./lean-cache'));
 

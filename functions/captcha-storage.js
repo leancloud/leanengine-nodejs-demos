@@ -13,11 +13,11 @@ const Captchapng = require('captchapng')
  * 设置环境变量：
  *
  *   env CAPTCHA_TTL=600000 # 图形验证码有效期（毫秒）
- *   
+ *
  */
 
 /* 获取一个验证码，会返回一个 captchaId 和一个 base64 格式的图形验证码 */
-AV.Cloud.define('getCaptchaImage', async (request) => {
+AV.Cloud.define('getCaptchaImageStorage', async (request) => {
   const captchaCode = parseInt(Math.random() * 9000 + 1000)
   const picture = new Captchapng(80, 30, captchaCode)
 
@@ -39,7 +39,7 @@ AV.Cloud.define('getCaptchaImage', async (request) => {
 })
 
 /* 提交验证码，需要提交 captchaId、captchaCode、mobilePhoneNumber，认证成功才会发送短信 */
-AV.Cloud.define('requestMobilePhoneVerify', async (request) => {
+AV.Cloud.define('requestMobilePhoneVerifyStorage', async (request) => {
   const captchaId = request.params.captchaId
   const captchaCode = parseInt(request.params.captchaCode)
 
@@ -55,6 +55,8 @@ AV.Cloud.define('requestMobilePhoneVerify', async (request) => {
         .greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - (process.env.CAPTCHA_TTL || 600000)))
         .equalTo('isUsed', false),
     })
+
+    await AV.User.requestMobilePhoneVerify(req.body.mobilePhoneNumber)
   } catch (err) {
     if (err.code === 305) {
       // query 条件不匹配，所以对记录更新不成功
@@ -63,7 +65,7 @@ AV.Cloud.define('requestMobilePhoneVerify', async (request) => {
       // 指定 id 不存在
       throw new AV.Cloud.Error('图形验证码不存在', {status: 401})
     } else {
-      throw err;
+      throw err
     }
   }
 })

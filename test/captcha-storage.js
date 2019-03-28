@@ -7,9 +7,9 @@ describe('captcha-storage', () => {
   let captchaId;
   const mobilePhoneNumber = 18888888888;
 
-  describe('getCaptchaImage', () => {
+  describe('getCaptchaImageStorage', () => {
     it('response have captchaId and imageUrl', async () => {
-      const result = await AV.Cloud.run('getCaptchaImage')
+      const result = await AV.Cloud.run('getCaptchaImageStorage')
 
       result.should.have.properties(['captchaId', 'imageUrl'])
 
@@ -22,10 +22,10 @@ describe('captcha-storage', () => {
     })
   })
 
-  describe('requestMobilePhoneVerify', () => {
+  describe('requestMobilePhoneVerifyStorage', () => {
     it('captcha id mismatch', async () => {
       try {
-        await AV.Cloud.run('requestMobilePhoneVerify', {
+        await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
           captchaId: 'noThisId',
           captchaCode: '0000',
           mobilePhoneNumber
@@ -39,7 +39,7 @@ describe('captcha-storage', () => {
 
     it('captcha code mismatch', async () => {
       try {
-        await AV.Cloud.run('requestMobilePhoneVerify', {
+        await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
           captchaId,
           captchaCode: '0000',
           mobilePhoneNumber
@@ -58,7 +58,7 @@ describe('captcha-storage', () => {
       const captchaObj = await new AV.Query('Captcha').get(captchaId, {useMasterKey: true})
 
       try {
-        await AV.Cloud.run('requestMobilePhoneVerify', {
+        await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
           captchaId,
           captchaCode: '' + captchaObj.get('code'),
           mobilePhoneNumber
@@ -75,7 +75,7 @@ describe('captcha-storage', () => {
 
       const captchaObj = await new AV.Query('Captcha').get(captchaId, {useMasterKey: true})
 
-      await AV.Cloud.run('requestMobilePhoneVerify', {
+      await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
         captchaId,
         captchaCode: '' + captchaObj.get('code'),
         mobilePhoneNumber

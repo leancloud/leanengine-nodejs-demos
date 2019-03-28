@@ -7,7 +7,7 @@ const memoize = require('promise-memoize')
 const requestPromise = require('request-promise')
 
 /*
- * 爬虫示例
+ * 爬虫示例，使用 Cloud Queue 抓取一个站点下的所有网页
  *
  * 在这个例子中我们实现了一个简单的爬虫来抓取 LeanCloud 的文档页面，
  * 云函数 crawling 是抓取的主要逻辑，它会将结果保存到云存储（CrawlerResults）中、

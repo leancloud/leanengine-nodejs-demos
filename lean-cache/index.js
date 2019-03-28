@@ -1,7 +1,6 @@
 var router = require('express').Router();
 
 router.use('/associated-data', require('./associated-data'));
-router.use('/captcha', require('./captcha'));
 router.use('/pubsub', require('./pubsub'));
 router.use('/readonly', require('./readonly'));
 router.use('/redlock', require('./redlock'));
