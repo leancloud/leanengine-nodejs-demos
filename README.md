@@ -22,6 +22,8 @@
 | [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
 | [crawler.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/crawler.js) | crawlWebsite<br>crawling | 爬虫示例，使用 Cloud Queue 抓取一个站点下的所有网页。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
+| [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云函数任务队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
+| [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
 
 ## 功能列表（网站托管）
 
