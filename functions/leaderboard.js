@@ -34,7 +34,7 @@ function redisKey(time) {
 }
 
 /* 提交当前用户的最高分数 */
-AV.Cloud.define('submitHighest', async (request) => {
+AV.Cloud.define('submitHighest', async request => {
   if (request.currentUser) {
     await redisClient.setHighest(redisKey(), request.params.score, request.currentUser.objectId)
   } else {
@@ -43,7 +43,7 @@ AV.Cloud.define('submitHighest', async (request) => {
 })
 
 /* 查询排行榜的特定排名范围（默认前 100） */
-AV.Cloud.define('getRankRange', async (request) => {
+AV.Cloud.define('getRankRange', async request => {
   const start = request.params.start || 0
   const end = request.params.end || 99
 
@@ -51,7 +51,7 @@ AV.Cloud.define('getRankRange', async (request) => {
 })
 
 /* 查询排行榜的特定分数范围（默认前 100） */
-AV.Cloud.define('getScoreRange', async (request) => {
+AV.Cloud.define('getScoreRange', async request => {
   const max = request.params.start || '+inf'
   const min = request.params.end || '-inf'
   const limit = request.params.limit || 100
@@ -60,7 +60,7 @@ AV.Cloud.define('getScoreRange', async (request) => {
 })
 
 /* 查询用户在排行榜上的排名和分数（默认当前用户） */
-AV.Cloud.define('getRankAndScore', async (request) => {
+AV.Cloud.define('getRankAndScore', async request => {
   const userId = request.params.userId || request.currentUser.objectId
 
   const score = await redisClient.zscore(redisKey(), userId)
@@ -77,8 +77,8 @@ AV.Cloud.define('getRankAndScore', async (request) => {
 })
 
 /* 用于归档前一天排行榜的定时任务，请在控制台上新建一个每天凌晨一点的定时任务 */
-AV.Cloud.define('archiveLeaderboard', async (request) => {
-  const yesterday = moment().subtract(1, 'day');
+AV.Cloud.define('archiveLeaderboard', async request => {
+  const yesterday = moment().subtract(1, 'day')
 
   const leaderboard = await redisClient.zrevrange(redisKey(), 0, -1, 'WITHSCORES')
 
@@ -97,8 +97,8 @@ function parseLeaderboard(leaderboard) {
       ranking: index + 1,
       userId: item[0],
       score: parseInt(item[1])
-    };
-  });
+    }
+  })
 }
 
 /*

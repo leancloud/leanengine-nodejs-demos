@@ -19,7 +19,7 @@ const {redisClient} = require('../redis')
  */
 
 /* 获取一个验证码，会返回一个 captchaId 和一个 base64 格式的图形验证码 */
-AV.Cloud.define('getCaptchaImageCache', async (request) => {
+AV.Cloud.define('getCaptchaImageCache', async request => {
   const captchaId = Math.random().toString();
   const captchaCode = parseInt(Math.random() * 9000 + 1000)
   const picture = new Captchapng(80, 30, captchaCode)
@@ -36,7 +36,7 @@ AV.Cloud.define('getCaptchaImageCache', async (request) => {
 })
 
 /* 提交验证码，需要提交 captchaId、captchaCode、mobilePhoneNumber，认证成功才会发送短信 */
-AV.Cloud.define('requestMobilePhoneVerifyCache', async (request) => {
+AV.Cloud.define('requestMobilePhoneVerifyCache', async request => {
   const captchaId = request.params.captchaId
 
   const captchaCode = await redisClient.get(captchaKey(captchaId))

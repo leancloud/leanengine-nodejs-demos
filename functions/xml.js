@@ -10,7 +10,7 @@ const xml2js = require('xml2js')
  *
  */
 
-AV.Cloud.define('xmlBuildObject', request => {
+AV.Cloud.define('xmlBuildObject', async request => {
   const builder = new xml2js.Builder()
 
   const data = {

@@ -17,7 +17,7 @@ const gm = require('gm')
 
 const imageMagick = gm.subClass({imageMagick: true})
 
-AV.Cloud.define('imageMagicResize', (request) => {
+AV.Cloud.define('imageMagicResize', async request => {
   return new Promise( (resolve, reject) => {
     imageMagick('public/leanstorage.png').resize(91, 77).toBuffer('png', (err, buffer) => {
       if (err) {

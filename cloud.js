@@ -15,8 +15,8 @@ var Task = AV.Object.extend('Task');
  * 一个简单的云代码方法
  */
 AV.Cloud.define('hello', function() {
-  return 'Hello world!';
-});
+  return 'Hello world!'
+})
 
 AV.Cloud.define('whoami', function(req, res) {
   console.log('whoami:', req.currentUser);

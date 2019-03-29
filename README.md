@@ -16,7 +16,7 @@
 | ------------ | ------------ | ---- |
 | [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImageStorage<br>requestMobilePhoneVerifyStorage | ✅ 使用图形验证码限制短信接口（使用云存储后端）。  |
 | [captcha-cache.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-cache.js) | getCaptchaImageCache<br>requestMobilePhoneVerifyCache | 使用图形验证码限制短信接口（使用 LeanCache）（需要 LeanCache）。  |
-| [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | 使用 LeanCache 实现排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
+| [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | ✨ 一个功能相对完整的排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
 | [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | batchUpdateByQuery<br>batchUpdateAll | 批量更新数据示例。 |
 | [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
@@ -44,6 +44,9 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | Demo 地址        | 代码地址 | 介绍 |
 | ------------  | ---- | ---- |
 | [snapcat.leanapp.cn](https://snapcat.leanapp.cn/?url=https://leancloud.cn/docs) | [snapcat 分支](https://github.com/leancloud/leanengine-nodejs-demos/tree/snapcat) | 一个使用 chrome-headless 的截图服务。 |
+| [graphql.leanapp.cn](https://graphql.leanapp.cn) | [leancloud/leancloud-graphql](https://github.com/leancloud/leancloud-graphql) | 运行在云引擎上的第三方 GraphQL 支持，允许你用 GraphQL 查询 LeanCloud 云存储中的所有数据。 |
+| [leanticket.cn](https://leanticket.cn) | [leancloud/ticket](https://github.com/leancloud/ticket) | 运行在云引擎上的工单系统（即 LeanCloud 官方客服系统） |
+| [status.leancloud.cn](https://status.leancloud.cn) | [leancloud/leancloud-status](https://github.com/leancloud/leancloud-status) | LeanCloud 服务状态页。 |
 
 ## 脚本
 

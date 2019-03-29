@@ -43,8 +43,6 @@ app.use('/users', require('./routes/users'));
 app.use('/websocket', require('./routes/websocket'));
 app.use('/wechat', require('./routes/wechat-message-callback'))
 
-app.use('/lean-cache', require('./lean-cache'));
-
 app.get('/', function(req, res) {
   res.redirect('/todos');
 });

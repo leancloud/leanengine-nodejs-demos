@@ -19,7 +19,7 @@ const Promise = require('bluebird')
 
 const Post = AV.Object.extend('Post');
 
-AV.Cloud.define('batchUpdateByQuery', async (request) => {
+AV.Cloud.define('batchUpdateByQuery', async request => {
   const status = request.params.status || 'a';
 
   const createQuery = () => {
@@ -35,7 +35,7 @@ AV.Cloud.define('batchUpdateByQuery', async (request) => {
   console.log('batch update finished')
 })
 
-AV.Cloud.define('batchUpdateAll', async (request) => {
+AV.Cloud.define('batchUpdateAll', async request => {
   const status = req.params.status || 'a';
 
   const createQuery = () => {
