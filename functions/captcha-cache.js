@@ -27,7 +27,7 @@ AV.Cloud.define('getCaptchaImageCache', async request => {
   picture.color(0, 0, 0, 0)
   picture.color(80, 80, 80, 255)
 
-  await redis.setex(captchaKey(captchaId), Math.round((process.env.CAPTCHA_TTL || 600000) / 1000), captchaCode)
+  await redis.setex(captchaKey(captchaId), Math.round((parseInt(process.env.CAPTCHA_TTL) || 600000) / 1000), captchaCode)
 
   res.json({
     captchaId: captchaId,

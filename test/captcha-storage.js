@@ -1,11 +1,11 @@
 const AV = require('leanengine')
+const Promise = require('bluebird')
 
 require('../server')
 
 describe('captcha-storage', () => {
-
-  let captchaId;
-  const mobilePhoneNumber = 18888888888;
+  let captchaId
+  const mobilePhoneNumber = '18888888888'
 
   describe('getCaptchaImageStorage', () => {
     it('response have captchaId and imageUrl', async () => {
@@ -55,6 +55,8 @@ describe('captcha-storage', () => {
       // 将超时时间设置为 1 毫秒，强制过期
       process.env.CAPTCHA_TTL = '1'
 
+      await Promise.delay(1500)
+
       const captchaObj = await new AV.Query('Captcha').get(captchaId, {useMasterKey: true})
 
       try {
@@ -75,11 +77,17 @@ describe('captcha-storage', () => {
 
       const captchaObj = await new AV.Query('Captcha').get(captchaId, {useMasterKey: true})
 
-      await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
-        captchaId,
-        captchaCode: '' + captchaObj.get('code'),
-        mobilePhoneNumber
-      })
+      try {
+        await AV.Cloud.run('requestMobilePhoneVerifyStorage', {
+          captchaId,
+          captchaCode: '' + captchaObj.get('code'),
+          mobilePhoneNumber
+        })
+
+        throw new Error('should throw')
+      } catch (err) {
+        err.message.should.match(/phone number was not found/)
+      }
     })
   })
 })

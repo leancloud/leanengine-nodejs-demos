@@ -52,11 +52,11 @@ AV.Cloud.define('requestMobilePhoneVerifyStorage', async request => {
       query: new AV.Query('Captcha')
         .equalTo('objectId', captchaId)
         .equalTo('code', captchaCode)
-        .greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - (process.env.CAPTCHA_TTL || 600000)))
+        .greaterThanOrEqualTo('createdAt', new Date(new Date().getTime() - (parseInt(process.env.CAPTCHA_TTL || 600000))))
         .equalTo('isUsed', false),
     })
 
-    await AV.User.requestMobilePhoneVerify(req.body.mobilePhoneNumber)
+    await AV.User.requestMobilePhoneVerify(request.params.mobilePhoneNumber)
   } catch (err) {
     if (err.code === 305) {
       // query 条件不匹配，所以对记录更新不成功
