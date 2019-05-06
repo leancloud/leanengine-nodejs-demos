@@ -67,6 +67,10 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 * Debian/Ubuntu 运行 `apt-get install redis-server`, CentOS/RHEL 运行 `yum install redis`.
 * Windows 尚无官方支持，可以下载 [微软的分支版本](https://github.com/MicrosoftArchive/redis) 安装包。
 
+## 使用 LeanDB
+
+`leandb` 目录中有连接 MySQL 数据库的代码示例（需要预先在控制台创建一个名为「MYRDB」的 MySQL 实例）。欢迎贡献更多代码片段和 demo。
+
 ## 相关文档
 
 * [云引擎总览](https://leancloud.cn/docs/leanengine_overview.html)
