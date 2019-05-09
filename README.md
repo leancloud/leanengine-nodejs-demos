@@ -17,6 +17,7 @@
 | [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImageStorage<br>requestMobilePhoneVerifyStorage | ✅ 使用图形验证码限制短信接口（使用云存储后端）。  |
 | [captcha-cache.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-cache.js) | getCaptchaImageCache<br>requestMobilePhoneVerifyCache | 使用图形验证码限制短信接口（使用 LeanCache）（需要 LeanCache）。  |
 | [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | ✨ 一个功能相对完整的排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
+| [limited-stock-rush.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/limited-stock-rush.js) | createRushStock<br>getOpeningRushs<br>rush<br>commitRushStock | ✨ 使用 LeanCache 应对秒杀抢购活动中短时间的大量请求（需要 LeanCache）。  |
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
 | [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | batchUpdateByQuery<br>batchUpdateAll | 批量更新数据示例。 |
 | [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
@@ -57,7 +58,7 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | ------------  | ---- | ---- |
 | [load-test](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/bin/load-test.js) | `load-test 30` | 对自定义的代码片段进行压力测试的工具，会给出速率和耗时等统计数据。 |
 
-## 使用 LeanCache
+## LeanCache
 
 对于用到了 LeanCache 的功能，你需要在控制台上创建 LeanCache 实例，复制该项目根目录的 [redis.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/redis.js) 到你的项目，并修改其中的 LeanCache 名称。
 
@@ -65,7 +66,7 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 
 * Mac 运行 `brew install redis` 安装，然后用 `redis-server` 启动。
 * Debian/Ubuntu 运行 `apt-get install redis-server`, CentOS/RHEL 运行 `yum install redis`.
-* Windows 尚无官方支持，可以下载 [微软的分支版本](https://github.com/MicrosoftArchive/redis) 安装包。
+* Windows 尚无官方支持。
 
 ## 相关文档
 
