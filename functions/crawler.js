@@ -31,7 +31,7 @@ AV.Cloud.define('crawlWebsite', async request => {
 })
 
 AV.Cloud.define('crawling', async request => {
-  const {url, referer, urlLimit} = request.params;
+  const {url, referer, urlLimit} = request.params
 
   try {
     const $ = cheerio.load(await requestPromise(url))
@@ -84,8 +84,8 @@ const queuePage = memoize(function queuePage(url, referer, urlLimit) {
 
 function getPageUrls($, url) {
   return $($('a')).map( (index, link) => {
-    return new URL($(link).attr('href'), url);
-  }).toArray();
+    return new URL($(link).attr('href'), url)
+  }).toArray()
 }
 
 function md5(string) {

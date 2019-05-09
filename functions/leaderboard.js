@@ -2,7 +2,8 @@ const AV = require('leanengine')
 const _ = require('lodash')
 const moment = require('moment')
 
-var {redisClient} = require('../redis')
+const {redisClient} = require('../redis')
+const Leaderboard = AV.Object.extend('Leaderboard')
 
 /*
  * 使用 LeanCache 实现排行榜
@@ -30,7 +31,7 @@ redisClient.defineCommand('setHighest', {
 
 /* 排行榜存储在 LeanCache 中的键名，按照当前日期存储为一个 ZSET，值是用户 ID */
 function redisKey(time) {
-  return 'leaderboard:' + moment(time).format('YYYYMMDD');
+  return 'leaderboard:' + moment(time).format('YYYYMMDD')
 }
 
 /* 提交当前用户的最高分数 */

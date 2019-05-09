@@ -13,8 +13,8 @@ const _ = require('lodash')
  *   npm install lodash
  */
 
- const {redisClient} = require('../redis')
- const Category = AV.Object.extend('Category')
+const {redisClient} = require('../redis')
+const Category = AV.Object.extend('Category')
 
 /* 设置特定分类的信息，如不存在会新建，会触发 afterSave 或 afterUpdate 的 Hook */
 AV.Cloud.define('updateCategory', async request => {

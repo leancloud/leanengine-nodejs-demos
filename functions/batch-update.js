@@ -17,10 +17,10 @@ const Promise = require('bluebird')
  *
  */
 
-const Post = AV.Object.extend('Post');
+const Post = AV.Object.extend('Post')
 
 AV.Cloud.define('batchUpdateByQuery', async request => {
-  const status = request.params.status || 'a';
+  const status = request.params.status || 'a'
 
   const createQuery = () => {
     return new AV.Query(Post).notEqualTo('status', status)
@@ -36,7 +36,7 @@ AV.Cloud.define('batchUpdateByQuery', async request => {
 })
 
 AV.Cloud.define('batchUpdateAll', async request => {
-  const status = req.params.status || 'a';
+  const status = request.params.status || 'a'
 
   const createQuery = () => {
     return new AV.Query(Post)
@@ -71,41 +71,41 @@ AV.Cloud.define('batchUpdateAll', async request => {
  */
 
 function batchUpdateByQuery(createQuery, performUpdate, options = {}) {
-  var batchLimit = options.batchLimit || 1000;
-  var concurrency = options.concurrencyLimit || 3;
-  var ignoreErrors = options.ignoreErrors;
+  var batchLimit = options.batchLimit || 1000
+  var concurrency = options.concurrencyLimit || 3
+  var ignoreErrors = options.ignoreErrors
 
   function next() {
-    var query = createQuery();
+    var query = createQuery()
 
     return query.limit(batchLimit).find().then( results => {
       if (results.length > 0) {
         return Promise.map(results, (object) => {
           return performUpdate(object).catch( err => {
             if (ignoreErrors) {
-              console.error('ignored', err);
+              console.error('ignored', err)
             } else {
-              throw err;
+              throw err
             }
-          });
-        }, {concurrency}).then(next);
+          })
+        }, {concurrency}).then(next)
       }
-    });
+    })
   }
 
-  return next();
+  return next()
 }
 
 function batchUpdateAll(createQuery, performUpdate, options = {}) {
-  var batchLimit = options.batchLimit || 1000;
-  var concurrency = options.concurrencyLimit || 3;
-  var ignoreErrors = options.ignoreErrors;
+  var batchLimit = options.batchLimit || 1000
+  var concurrency = options.concurrencyLimit || 3
+  var ignoreErrors = options.ignoreErrors
 
   function next(lastCreatedAt) {
-    var query = createQuery();
+    var query = createQuery()
 
     if (lastCreatedAt) {
-      query.greaterThan('createdAt', lastCreatedAt);
+      query.greaterThan('createdAt', lastCreatedAt)
     }
 
     return query.ascending('createdAt').limit(batchLimit).find().then( results => {
@@ -113,19 +113,19 @@ function batchUpdateAll(createQuery, performUpdate, options = {}) {
         return Promise.map(results, (object) => {
           return performUpdate(object).catch( err => {
             if (ignoreErrors) {
-              console.error('ignored', err);
+              console.error('ignored', err)
             } else {
-              throw err;
+              throw err
             }
-          });
+          })
         }, {concurrency}).then( () => {
-          nextCreatedAt = results[results.length - 1].createdAt;
-          console.log('nextCreatedAt', nextCreatedAt);
-          return next(nextCreatedAt);
-        });
+          const nextCreatedAt = results[results.length - 1].createdAt
+          console.log('nextCreatedAt', nextCreatedAt)
+          return next(nextCreatedAt)
+        })
       }
-    });
+    })
   }
 
-  return next(options.lastCreatedAt);
+  return next(options.lastCreatedAt)
 }

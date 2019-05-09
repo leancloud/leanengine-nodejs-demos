@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const AV = require('leanengine');
-const Measured = require('measured');
-const Promise = require('bluebird');
-const Queue = require('promise-queue');
+const AV = require('leanengine')
+const Measured = require('measured')
+const Promise = require('bluebird')
+const Queue = require('promise-queue')
 
 /*
  * load-test [concurrent]
@@ -16,53 +16,53 @@ const Queue = require('promise-queue');
  * 该脚本会对 `request` 函数进行压力测试（函数的内容需要你自行编写），给出速率和耗时等统计数据，适用于对核心业务逻辑的代码片段进行性能测试。
  */
 
-const MAX_CONCURRENT = parseInt(process.argv[process.argv.length - 1]) || 30;
+const MAX_CONCURRENT = parseInt(process.argv[process.argv.length - 1]) || 30
 
-console.log('MAX_CONCURRENT:', MAX_CONCURRENT);
+console.log('MAX_CONCURRENT:', MAX_CONCURRENT)
 
 AV.init({
   appId: process.env.LEANCLOUD_APP_ID,
   appKey: process.env.LEANCLOUD_APP_KEY,
   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
-});
+})
 
-const queue = new Queue(MAX_CONCURRENT, MAX_CONCURRENT * 10);
-const timer = new Measured.Timer();
-let counts = 0;
-let errors = 0;
+const queue = new Queue(MAX_CONCURRENT, MAX_CONCURRENT * 10)
+const timer = new Measured.Timer()
+let counts = 0
+let errors = 0
 
 function request() {
   return new AV.Query('Post').find().then( () => {
-    return Promise.delay(20);
-  });
+    return Promise.delay(20)
+  })
 }
 
 function fillQueue() {
   for (var i = 0; i < MAX_CONCURRENT * 2 - queue.getQueueLength(); i++){
     queue.add(function() {
-      const tracker = timer.start();
+      const tracker = timer.start()
 
       return Promise.try(request).catch( err => {
-        errors++;
-        console.error(err);
+        errors++
+        console.error(err)
       }).then( () => {
-        counts++;
-        tracker.end();
+        counts++
+        tracker.end()
 
         if (queue.getQueueLength() < MAX_CONCURRENT * 2) {
-          fillQueue();
+          fillQueue()
         }
-      });
-    });
+      })
+    })
   }
 }
 
-fillQueue();
+fillQueue()
 
 setInterval( () => {
-  console.log('errors:', errors, 'counts:', counts);
-  console.log('metrics:', timer.toJSON());
-}, 1000);
+  console.log('errors:', errors, 'counts:', counts)
+  console.log('metrics:', timer.toJSON())
+}, 1000)
 
 /*
   * 压力测试结果
