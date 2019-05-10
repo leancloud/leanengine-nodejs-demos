@@ -7,6 +7,8 @@ const mysql = require('mysql');
 /*
  * An example of connecting to LeanDB MySQL.
  *
+ * You need to create a LeanDB MySQL instance named `MYRDB` in the dashboard.
+ * 
  * Install dependencies:
  * 
  *     npm install --save bluebird mysql

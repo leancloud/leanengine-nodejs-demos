@@ -25,7 +25,7 @@
 | [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云函数任务队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
 | [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
 | [rtm-signature.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-signature.js) | signLogin<br>signStartConversation<br>signOperateConversation<br>signQueryMessage<br>signBlockConversation<br>signBlockClient | ✅ 使用云引擎实现即时通讯服务的签名。 |
-| [connect-mysql.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/connect-mysql.js) | connectMysql | 连接 LeanDB MySQL 示例。|
+| [connect-mysql.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/connect-mysql.js) | connectMysql | 连接 LeanDB MySQL 示例（需要预先在控制台创建一个名为「MYRDB」的 MySQL 实例）。|
 
 ## 功能列表（网站托管）
 
@@ -57,16 +57,6 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | 文件名        | 使用方法 | 介绍 |
 | ------------  | ---- | ---- |
 | [load-test](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/bin/load-test.js) | `load-test 30` | 对自定义的代码片段进行压力测试的工具，会给出速率和耗时等统计数据。 |
-
-## 使用 LeanCache
-
-对于用到了 LeanCache 的功能，你需要在控制台上创建 LeanCache 实例，复制该项目根目录的 [redis.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/redis.js) 到你的项目，并修改其中的 LeanCache 名称。
-
-本地运行 Redis:
-
-* Mac 运行 `brew install redis` 安装，然后用 `redis-server` 启动。
-* Debian/Ubuntu 运行 `apt-get install redis-server`, CentOS/RHEL 运行 `yum install redis`.
-* Windows 尚无官方支持，可以下载 [微软的分支版本](https://github.com/MicrosoftArchive/redis) 安装包。
 
 ## 使用 LeanDB
 
