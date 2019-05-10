@@ -1,8 +1,16 @@
 'use strict';
 
+const AV = require('leanengine');
 const Promise = require('bluebird');
-const router = require('express').Router();
 const mysql = require('mysql');
+
+/*
+ * An example of connecting to LeanDB MySQL.
+ *
+ * Install dependencies:
+ * 
+ *     npm install --save bluebird mysql
+ */
 
 const mysqlPool = Promise.promisifyAll(mysql.createPool({
   host: process.env['MYSQL_HOST_MYRDB'],
@@ -13,13 +21,7 @@ const mysqlPool = Promise.promisifyAll(mysql.createPool({
   connectionLimit: 10
 }));
 
-router.get('/mysql', function(req, res) {
-  mysqlPool.queryAsync('SELECT 1 + 1 AS solution').then( rows => {
-    res.json({solution: rows[0].solution});
-  }).catch( err => {
-    res.status(500).json({error: error});
-  });
+AV.Cloud.define('connectMysql', async request => {
+    rows = await mysqlPool.queryAsync('SELECT 1 + 1 AS solution');
+    return { solution: rows[0].solution };
 });
-
-
-module.exports = router;
