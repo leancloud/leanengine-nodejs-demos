@@ -1,5 +1,6 @@
-const AV = require('leanengine')
 const _ = require('lodash')
+const AV = require('leanengine')
+const Promise = require('bluebird')
 
 const {redisClient} = require('../redis')
 const RushStock = AV.Object.extend('RushStock')
@@ -14,7 +15,7 @@ const RushStock = AV.Object.extend('RushStock')
  *
  * 安装依赖：
  *
- *   npm install moment lodash
+ *   npm install lodash bluebird
  *
  */
 
@@ -46,7 +47,7 @@ AV.Cloud.define('createRushStock', {internal: true}, async request => {
 
 /* 供用户获取当前开放的秒杀列表 */
 AV.Cloud.define('getOpeningRushs', async request => {
-  return _.map(await redisClient.hgetall('stockRushStocks'), (rushStringify, name) => {
+  return Promise.map(await redisClient.hgetall('stockRushStocks'), async (rushStringify, name) => {
     const rushStock = JSON.parse(rushStringify)
     const takedCount = await redisClient.llen(`stockRushStockTaked:${rushStock.rushId}`)
 
