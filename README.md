@@ -39,6 +39,7 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | 文件名        | 介绍 |
 | ------------  | ---- |
 | [wechat-message-callback.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/wechat-message-callback.js) | 接收并自动回复 [微信公众平台的用户消息回调](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543)  |
+| [websocket.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/websocket.js) | 简单的 WebSocket 示例：将客户端发来的消息原样发回客户端（echo）、每隔一秒向客户端发送一条消息（timer） |
 
 ## 其他 Demo
 

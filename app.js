@@ -1,9 +1,8 @@
-const express = require('express')
-const timeout = require('connect-timeout')
-const path = require('path')
-const bodyParser = require('body-parser')
 const AV = require('leanengine')
-const expressWs = require('express-ws')
+const bodyParser = require('body-parser')
+const express = require('express')
+const path = require('path')
+const timeout = require('connect-timeout')
 
 // 加载云函数定义，你可以将云函数拆分到多个文件方便管理，但需要在主文件中加载它们
 require('./cloud')
@@ -11,7 +10,7 @@ require('./cloud')
 const app = express()
 
 // 启用 WebSocket 支持，如不需要可去除
-expressWs(app)
+require('express-ws')(app)
 
 // 设置模板引擎
 app.set('views', path.join(__dirname, 'views'))
