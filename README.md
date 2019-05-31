@@ -17,15 +17,16 @@
 | [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | batchUpdateByQuery<br>batchUpdateAll | 批量更新数据示例。 |
 | [captcha-cache.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-cache.js) | getCaptchaImageCache<br>requestMobilePhoneVerifyCache | 使用图形验证码限制短信接口（使用 LeanCache）（需要 LeanCache）。  |
 | [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImageStorage<br>requestMobilePhoneVerifyStorage | ✅ 使用图形验证码限制短信接口（使用云存储后端）。  |
-| [crawler.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/crawler.js) | crawlWebsite<br>crawling | 爬虫示例，使用 Cloud Queue 抓取一个站点下的所有网页。 |
+| [crawler.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/crawler.js) | crawlWebsite<br>crawling | 爬虫示例，使用云队列抓取一个站点下的所有网页。 |
 | [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
 | [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | ✨ 一个功能相对完整的排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
 | [limited-stock-rush.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/limited-stock-rush.js) | createRushStock<br>getOpeningRushs<br>rush<br>commitRushStock | ✨ 使用 LeanCache 应对秒杀抢购活动中短时间的大量请求（需要 LeanCache）。  |
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
-| [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云函数任务队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
+| [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
 | [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
 | [rtm-signature.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-signature.js) | signLogin<br>signStartConversation<br>signOperateConversation<br>signQueryMessage<br>signBlockConversation<br>signBlockClient | ✅ 使用云引擎实现即时通讯服务的签名。 |
-| [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✅ 解密微信小程序用户加密数据。 |
+| [queue-result-query.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-result-query.js) | createTask<br>queryResult<br>longRunningTask | 云队列：结果查询 |
+| [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✨ ✅ 解密微信小程序用户加密数据。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
 
 ## 功能列表（网站托管）

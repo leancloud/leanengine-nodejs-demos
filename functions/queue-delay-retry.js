@@ -9,7 +9,7 @@ const AV = require('leanengine')
 
 AV.Cloud.define('queueDelayTask', async request => {
   // 延时任务，在 2 秒之后执行
-  return AV.Cloud.enqueue('delayTaskFunc', {name: 'world'}, {deplay: 5000})
+  return AV.Cloud.enqueue('delayTaskFunc', {name: 'world'}, {delay: 5000})
 })
 
 AV.Cloud.define('queueRetryTask', async request => {

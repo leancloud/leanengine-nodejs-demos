@@ -38,7 +38,7 @@ AV.Cloud.define('crawling', async request => {
 
     await new CrawlerResults().save({
       url: url,
-      referer: referer,
+      referer: referer || '',
       title: $('title').text()
     })
 
