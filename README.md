@@ -23,9 +23,9 @@
 | [limited-stock-rush.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/limited-stock-rush.js) | createRushStock<br>getOpeningRushs<br>rush<br>commitRushStock | ✨ 使用 LeanCache 应对秒杀抢购活动中短时间的大量请求（需要 LeanCache）。  |
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
 | [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
+| [queue-result-query.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-result-query.js) | createTask<br>queryResult<br>longRunningTask | 云队列：结果查询 |
 | [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
 | [rtm-signature.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-signature.js) | signLogin<br>signStartConversation<br>signOperateConversation<br>signQueryMessage<br>signBlockConversation<br>signBlockClient | ✅ 使用云引擎实现即时通讯服务的签名。 |
-| [queue-result-query.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-result-query.js) | createTask<br>queryResult<br>longRunningTask | 云队列：结果查询 |
 | [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✨ ✅ 解密微信小程序用户加密数据。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
 
@@ -41,6 +41,7 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | ------------  | ---- |
 | [wechat-message-callback.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/wechat-message-callback.js) | 接收并自动回复 [微信公众平台的用户消息回调](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543)  |
 | [websocket.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/websocket.js) | 简单的 WebSocket 示例：将客户端发来的消息原样发回客户端（echo）、每隔一秒向客户端发送一条消息（timer） |
+| [cookie-session.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/cookie-session.js) | 使用 Cookie Session 在 Cookie 中维持用户登录状态 |
 
 ## 其他 Demo
 

@@ -34,9 +34,7 @@ app.use(AV.Cloud.CookieSession({ secret: 'randomString', maxAge: 3600000, fetchU
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// 可以将一类的路由单独保存在一个文件中
-app.use('/todos', require('./routes/todos'))
-app.use('/users', require('./routes/users'))
+app.use('/cookie-session', require('./routes/cookie-session'))
 app.use('/websocket', require('./routes/websocket'))
 app.use('/wechat', require('./routes/wechat-message-callback'))
 
