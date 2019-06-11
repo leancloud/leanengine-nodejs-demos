@@ -19,7 +19,7 @@ const Category = AV.Object.extend('Category')
 /* 设置特定分类的信息，如不存在会新建，会触发 afterSave 或 afterUpdate 的 Hook */
 AV.Cloud.define('updateCategory', async request => {
   try {
-    const category = await new AV.Query(Category).equalTo('name', req.params.name).first()
+    const category = await new AV.Query(Category).equalTo('name', request.params.name).first()
 
     if (category) {
       return category.save(request.params)
@@ -45,11 +45,11 @@ AV.Cloud.define('getCategories', async request => {
 /* Redis 中的数据是通过下面三个 Class Hook 来和云存储保持同步的 */
 
 AV.Cloud.afterUpdate('Category', async request => {
-  redisClient.hset('categories', request.object.get('name'), request.object.toFullJSON())
+  redisClient.hset('categories', request.object.get('name'), JSON.stringify(request.object.toFullJSON()))
 })
 
 AV.Cloud.afterSave('Category', async request => {
-  redisClient.hset('categories', request.object.get('name'), request.object.toFullJSON())
+  redisClient.hset('categories', request.object.get('name'), JSON.stringify(request.object.toFullJSON()))
 })
 
 AV.Cloud.afterDelete('Category', async request => {
@@ -59,6 +59,6 @@ AV.Cloud.afterDelete('Category', async request => {
 /* 我们还可以设置一个一天的定时器，每天与云存储进行一次全量的同步，以免错过某个 Class Hook */
 AV.Cloud.define('refreshCategories', async request => {
   const categories = await new AV.Query(Category).find()
-  const categorieSerialized = _.mapValues(_.keyBy(categories, category => category.get('name')), object => object.toFullJSON())
+  const categorieSerialized = _.mapValues(_.keyBy(categories, category => category.get('name')), object => JSON.stringify(object.toFullJSON()))
   await redisClient.hmset('categories', categorieSerialized)
 })
