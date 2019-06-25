@@ -40,10 +40,6 @@ app.use('/cookie-session', require('./routes/cookie-session'))
 app.use('/websocket', require('./routes/websocket'))
 app.use('/wechat', require('./routes/wechat-message-callback'))
 
-app.get('/', function(req, res) {
-  res.redirect('/todos')
-})
-
 app.use(function(req, res, next) {
   // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器
   if (!res.headersSent) {

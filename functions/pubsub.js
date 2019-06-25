@@ -16,7 +16,7 @@ const redisSubscriber = createClient()
 redisSubscriber.subscribe('messages')
 
 /* 将订阅到的消息打印出来 */
-redisSubscriber.on('messages', function(channel, message) {
+redisSubscriber.on('messages', (channel, message) => {
   console.log('received message', channel, JSON.parse(message))
 })
 

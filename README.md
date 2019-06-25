@@ -26,6 +26,7 @@
 | [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
 | [queue-result-query.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-result-query.js) | createTask<br>queryResult<br>longRunningTask | 云队列：结果查询 |
 | [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
+| [redlock.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/redlock.js) | startTaskLoop<br>getCurrentTask | 用 LeanCache 实现分布式锁（需要 LeanCache）。 |
 | [rtm-signature.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-signature.js) | signLogin<br>signStartConversation<br>signOperateConversation<br>signQueryMessage<br>signBlockConversation<br>signBlockClient | ✅ 使用云引擎实现即时通讯服务的签名。 |
 | [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✨ ✅ 解密微信小程序用户加密数据。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
