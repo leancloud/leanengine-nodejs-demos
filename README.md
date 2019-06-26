@@ -4,8 +4,6 @@
 
 若希望从一个更精简的项目骨架开始开发你的新项目，请使用 [leancloud/node-js-getting-started](https://github.com/leancloud/node-js-getting-started)。
 
-> 该项目还在梳理的过程中，仍剩余一些 Demo 或文件没有整理完成。
-
 ## 功能列表（云函数）
 
 下面列出的功能均以云函数实现，位于 `functions` 目录中。每个文件的开头已列出所需的依赖和配置（环境变量），你可以在安装依赖后将文件直接复制到你的 `functions` 目录中，我们的示例项目会自动加载这个目录中的文件。
@@ -46,6 +44,7 @@ app.use('/wechat', require('./routes/wechat-message-callback'))
 | [wechat-message-callback.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/wechat-message-callback.js) | 接收并自动回复 [微信公众平台的用户消息回调](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543)  |
 | [websocket.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/websocket.js) | 简单的 WebSocket 示例：将客户端发来的消息原样发回客户端（echo）、每隔一秒向客户端发送一条消息（timer） |
 | [cookie-session.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/cookie-session.js) | 使用 Cookie Session 在 Cookie 中维持用户登录状态 |
+| [render-ejs.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/render-ejs.js) | 使用 EJS 渲染 HTML 页面 |
 | [markdown.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/routes/markdown.js) | 项目主页，将 README.md 渲染成 HTML 显示在页面上 |
 
 ## 其他 Demo

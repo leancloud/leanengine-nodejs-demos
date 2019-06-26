@@ -12,11 +12,12 @@ const app = express()
 // 启用 WebSocket 支持，如不需要可去除
 require('express-ws')(app)
 
-// 设置模板引擎
+// 设置模板路径和默认引擎
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
+app.set('view engine', 'ejs')
 
-app.use('/static', express.static('public'))
+// 设置静态内容路径
+app.use('/public', express.static('public'))
 
 // 设置默认超时时间
 app.use(timeout('15s'))
@@ -24,7 +25,7 @@ app.use(timeout('15s'))
 // 加载云引擎中间件
 app.use(AV.express())
 
-// 强制使用 https
+// 跳转 HTTP 至 HTTPS
 app.enable('trust proxy')
 app.use(AV.Cloud.HttpsRedirect())
 
@@ -37,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', require('./routes/markdown'))
 
 app.use('/cookie-session', require('./routes/cookie-session'))
+app.use('/render-ejs', require('./routes/render-ejs'))
 app.use('/websocket', require('./routes/websocket'))
 app.use('/wechat', require('./routes/wechat-message-callback'))
 
@@ -70,7 +72,7 @@ app.use(function(err, req, res, _next) {
     // 如果是开发环境，则将异常堆栈输出到页面，方便开发调试
     error = err
   }
-  res.render('error', {
+  res.json({
     message: err.message,
     error: error
   })
