@@ -14,6 +14,7 @@
 
 | 文件名       | 提供的云函数 | 介绍 |
 | ------------ | ------------ | ---- |
+| [associated-data.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/associated-data.js) | createPostSamples<br>getPostsWithAuthor<br>getPostWithAuthor<br>afterUpdate:_User | 缓存关联数据示例（需要 LeanCache）。 |
 | [batch-update.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/batch-update.js) | batchUpdateByQuery<br>batchUpdateAll | 批量更新数据示例。 |
 | [captcha-cache.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-cache.js) | getCaptchaImageCache<br>requestMobilePhoneVerifyCache | 使用图形验证码限制短信接口（使用 LeanCache）（需要 LeanCache）。  |
 | [captcha-storage.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/captcha-storage.js) | getCaptchaImageStorage<br>requestMobilePhoneVerifyStorage | ✅ 使用图形验证码限制短信接口（使用云存储后端）。  |

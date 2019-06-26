@@ -38,7 +38,9 @@ AV.Cloud.define('updateCategory', async request => {
 /* 从 Redis 中获取分类信息，不会查询云存储 */
 AV.Cloud.define('getCategories', async request => {
   const categories = await redisClient.hgetall('categories')
-  return categories.map(AV.parseJSON)
+  return categories.map( category => {
+    return AV.parseJSON(JSON.parse(category))
+  })
 })
 
 
