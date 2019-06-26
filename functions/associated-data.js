@@ -1,7 +1,6 @@
 const AV = require('leanengine')
 const Promise = require('bluebird')
-const _ = require('underscore')
-
+const _ = require('lodash')
 
 /*
  * 缓存关联数据示例
@@ -11,6 +10,11 @@ const _ = require('underscore')
  *
  * 例如我们有一个社区，Post 代表一篇文章，author 字段是一个 User 对象，代表文章的作者。
  * 在这个社区中活跃用户的数量和文章数量相比较小，且用户对象上的数据也不常变化（可以通过 User 的 afterUpdate Hook 来刷新缓存）。
+ *
+ * 安装依赖：
+ *
+ *   npm install lodash bluebird
+ *
  */
 
 const {redisClient} = require('../redis')
