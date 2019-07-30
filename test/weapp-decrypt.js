@@ -2,7 +2,7 @@ const AV = require('leanengine')
 
 require('../server')
 
-describe('rtm-signature', () => {
+describe('weapp-decrypt', () => {
   it('should success', async () => {
     // appId uhx9ou96070bts3emcu6vyaxngnybkq07s6smzws3xp0ej4c
     // userId 587207a91b69e6005ca6b05b
