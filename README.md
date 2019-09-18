@@ -27,7 +27,7 @@
 | [readonly.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/readonly.js) | updateCategory<br>getCategories<br>afterUpdate:Category<br>afterSave:Category<br>afterDelete:Category<br>refreshCategories | 热点只读数据缓存示例（需要 LeanCache）。 |
 | [redlock.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/redlock.js) | startTaskLoop<br>getCurrentTask | 用 LeanCache 实现分布式锁（需要 LeanCache）。 |
 | [rtm-signature.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-signature.js) | signLogin<br>signStartConversation<br>signOperateConversation<br>signQueryMessage<br>signBlockConversation<br>signBlockClient | ✅ 使用云引擎实现即时通讯服务的签名。 |
-| [todos.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/todos.js) | getAllTodos<br>createTodo<br>deleteTodo<br>setTodoToDone | 在云引擎中已客户端的权限来操作云存储。 |
+| [todos.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/todos.js) | getAllTodos<br>createTodo<br>deleteTodo<br>setTodoToDone | 在云引擎中以客户端的权限来操作云存储。 |
 | [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✨ ✅ 解密微信小程序用户加密数据。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
 
