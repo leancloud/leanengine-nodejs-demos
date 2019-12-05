@@ -31,6 +31,7 @@
 | [todos.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/todos.js) | getAllTodos<br>createTodo<br>deleteTodo<br>setTodoToDone | 在云引擎中以客户端的权限来操作云存储。 |
 | [weapp-decrypt.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/weapp-decrypt.js) | decryptWeappData | ✨ ✅ 解密微信小程序用户加密数据。 |
 | [xml.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/xml.js) | xmlBuildObject | 使用云函数序列化 XML 对象。 |
+| [rtm-onoff-status.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/rtm-onoff-status.js) | _clientOnline<br>_clientOffline<br>getOnOffStatus | 即时通讯上下线状态的存储以及查询（需要 LeanCache）。 |
 
 ## 功能列表（网站托管）
 
