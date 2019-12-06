@@ -3,13 +3,13 @@ var AV = require('leanengine')
 const {redisClient} = require('../redis')
 
 AV.Cloud.define('_clientOnline', async (request) => {
-  // 设置某一客户端 ID 对应的值为 `true`，表示上线状态，同时清空过期计时
-  redisClient.set(redisKey(request.params.peerId), true)
+  // 设置某一客户端 ID 对应的值为 1，表示上线状态，同时清空过期计时
+  redisClient.set(redisKey(request.params.peerId), 1)
 })
 
 AV.Cloud.define('_clientOffline', async (request) => {
-  // 设置某一客户端 ID 对应的值为 `false`，表示下线状态，同时设置过期计时
-  redisClient.set(redisKey(request.params.peerId), false, 'EX', 604800)
+  // 设置某一客户端 ID 对应的值为 0，表示下线状态，同时设置过期计时
+  redisClient.set(redisKey(request.params.peerId), 0, 'EX', 604800)
 })
 
 AV.Cloud.define('getOnOffStatus', async (request) => {
