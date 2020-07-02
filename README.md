@@ -10,6 +10,8 @@
 
 对于需要 LeanCache 的功能，还请阅读下面的 [LeanCache](#LeanCache) 段落。
 
+✅表示写了测试，✨表示实现了相对完整的功能，无需修改即可使用。
+
 | 文件名       | 提供的云函数 | 介绍 |
 | ------------ | ------------ | ---- |
 | [amr-transcoding.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/amr-transcoding.js) | amrToMp3 | 使用 ffmpeg 将 amr 音频转码为 mp3。 |
