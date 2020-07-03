@@ -3,6 +3,13 @@ const { redisClient } = require("./redis");
 const { nanoid } = require("nanoid");
 
 /*
+ * 通过移动端应用登录网站。
+ *
+ * 登录网站时，网站显示二维码，供已登录的移动端应用扫描，扫描后网站变为登录状态。
+ *
+ */
+
+/*
  * 供网站调用，返回一个随机 token，网站可以将 token 转换为二维码。
  */
 AV.Cloud.define("requestLoginByApp", async (request) => {
