@@ -23,6 +23,7 @@
 | [imagemagick.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/imagemagick.js) | imageMagicResize | ✅ 使用 imageMagick 处理图像。 |
 | [leaderboard.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/leaderboard.js) | submitHighest<br>getRankRange<br>getScoreRange<br>getRankAndScore<br>archiveLeaderboard | ✨ 一个功能相对完整的排行榜，支持任意数量的用户排序、支持查询任意用户的排名、支持查询任意排名段的用户（需要 LeanCache）。  |
 | [limited-stock-rush.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/limited-stock-rush.js) | createRushStock<br>getOpeningRushs<br>rush<br>commitRushStock | ✨ 使用 LeanCache 应对秒杀抢购活动中短时间的大量请求（需要 LeanCache）。  |
+| [login-by-app.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/login-by-app.js) | requestLoginByApp<br>verifyByApp<br>loginByApp | 通过移动端应用验证用户身份，登录网站（比如扫码登录）。| 
 | [meta.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/meta.js) | getEnvironments<br>getUser<br>getParams<br>getClientMeta<br>getHeaders | 从运行环境或客户端读取元信息（环境变量、请求头等）。 |
 | [pubsub.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/pubsub.js) | publishMessage | 使用 Redis Pub/Sub 收发消息。 |
 | [queue-delay-retry.js](https://github.com/leancloud/leanengine-nodejs-demos/blob/master/functions/queue-delay-retry.js) | queueDelayTask<br>queueRetryTask<br>delayTaskFunc<br>retryTaskFunc | 云队列：延时和重试。云函数任务队列提供了一种可靠地对云函数进行延时运行、重试、结果查询的能力。 |
