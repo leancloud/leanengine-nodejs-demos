@@ -1,0 +1,23 @@
+{
+  "name": "stateful-tester",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "ioredis": "^4.17.3",
+    "leancloud-storage": "^4.6.1",
+    "leanengine": "^3.7.0",
+    "lodash": "^4.17.19",
+    "marked": "^1.1.1",
+    "mongodb": "^3.6.0",
+    "mysql": "^2.18.1",
+    "safe-regex": "^2.1.1"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
