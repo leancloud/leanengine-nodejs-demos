@@ -45,3 +45,8 @@ AV.Cloud.define('getHeaders', async request => {
   // 内部接口，请勿在业务代码中使用
   return request.expressReq.headers
 })
+
+// 在 Hook 中获取客户端 IP
+AV.Cloud.afterSave('HookObject', async request => {
+  console.log(request.meta.remoteAddress)
+})
