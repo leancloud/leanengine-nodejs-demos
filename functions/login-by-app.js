@@ -1,5 +1,5 @@
 const AV = require("leanengine");
-const { redisClient } = require("./redis");
+const { redisClient } = require("../redis");
 const { nanoid } = require("nanoid");
 
 /*
