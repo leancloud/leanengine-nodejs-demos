@@ -6,6 +6,7 @@ const _ = require('lodash')
 const mysql = require('mysql')
 const express = require('express')
 const Promise = require('bluebird')
+const {MongoClient} = require('mongodb')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.get('/', async (req, res, next) => {
 
     result += await getRedisInfos()
     result += await getMysqlInfos()
+    result += await getMongoInfos()
 
     res.send(marked(result))
   } catch (err) {
@@ -108,6 +110,38 @@ async function getMysqlInfos() {
       result += `\`${err.message}\`\n`
     } finally {
       mysqlPool.end()
+    }
+  }
+
+  return result
+}
+
+async function getMongoInfos() {
+  let result = ''
+
+  const mongoKeys = _.filter(_.keys(process.env), name => {
+    return name.startsWith('MONGODB_URL_')
+  })
+
+  for (const mongoKey of mongoKeys) {
+    const mongoString = process.env[mongoKey]
+
+    console.log('connecting to MongoDB', mongoKey, mongoString)
+
+    result += `## ${mongoKey.slice('MONGODB_URL_'.length)}\n`
+
+    const mongoClient = new MongoClient(mongoString, {useUnifiedTopology: true})
+
+    try {
+      await mongoClient.connect()
+
+      await mongoClient.db('test').command({dbStats: 1})
+
+      result += `OK\n`
+    } catch (err) {
+      result += `\`${err.message}\`\n`
+    } finally {
+      mongoClient.close()
     }
   }
 

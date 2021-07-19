@@ -8,7 +8,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
-    "ioredis": "^4.17.3",
+    "ioredis": "^4.24.6",
     "leancloud-storage": "^4.6.1",
     "leanengine": "^3.7.0",
     "lodash": "^4.17.19",
